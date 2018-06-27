@@ -910,7 +910,7 @@ main.single img.full { width: 100%; }
 #single-post-header .post-details span a:hover { color: #1a98da; }
 #single-post-header .post-details span i { margin-left: 0.5em; }
 #single-post-header .post-details span.author a { margin-left: 0.5em; }
-#single-post-header .post-edit-link { display: block; position: absolute; bottom: -2.25em; right: 1em; font-size: 1em; padding: 1em; border-radius: 50%; background: #282828; color: white; height: 1em; width: 1em; text-align: center; }
+#single-post-header .post-edit-link { display: block; position: absolute; bottom: -2.25em; right: 1em; font-size: 1em; padding: 1em; border-radius: 50%; background: #282828; color: white; height: 1em; width: 1em; text-align: center; z-index: 2; }
 
 #toggle-header { color: white; text-decoration: none; }
 
