@@ -4,36 +4,73 @@
 	 // Blog Object
 	 //***********************************************************************************************
 	let app = {
-		getHeight:(id)=>{
-			if(id==='window'){
-				return $(window).height();
-			}else{
-				return $('#'+id).height();
+		checkScroll:() => {
+			if(app.page.content !== null) {
+				// Currently Main Page
+				let scrollLimit = app.page.splash.height(),
+				padding = $(window).height()*0.02
+				if(window.pageYOffset>=scrollLimit){
+					app.page.search.css("position","fixed");
+					app.page.search.css("top","100px");
+					app.page.content.css("top",app.page.search.height()+padding);
+				}
+				else if(window.pageYOffset<scrollLimit){
+					app.page.search.css("position","relative");
+					app.page.search.css("top","0");
+					app.page.content.css("top","0");
+				}
 			}
+			if(app.singlePost.content !== null){
+				// Single Post
+				let scrollLimit = 450;
+				if(window.pageYOffset===0){
+					app.singlePost.headerAutoHide = true;
+				}
+				if(window.pageYOffset>=scrollLimit&&app.singlePost.headerOpen&&app.singlePost.headerAutoHide){
+					app.singlePost.headerAutoHide=false;
+						app.singlePost.toggleClick();
+				}
+			}
+		},
+		toggleElement:(item) => {
+			let htmlEl = null;
+			switch(item) {
+				case 'search':
+					htmlEl = app.page.search;
+					break;
+				case 'categories':
+					htmlEl = app.page.categories;
+					break;
+			}
+			htmlEl.slideToggle(250, function() {
+			// Animation complete.
+				switch(item) {
+					case 'search':
+						app.page.searchOpen = !app.page.searchOpen;
+						break;
+					case 'categories':
+						app.page.catsOpen = !app.page.catsOpen;
+						break;
+				}
+			});
 		},
 		// page
 		page:{
-			/*
-			header:{
-				id:$("#navResponsive")
-			},
-			categories:{
-				id:$("#categories"),
-				isOpen:false
-			},
-			search:{
-				id:$("#search-bar"),
-			}
-			search = ,
-			searchH = search.height(),
-			searchOpen = false,
-			closeSearch = $("#close-search"),
-			openSearch = $("#open-search"),
-			content = $("#page-main");
-			*/
+			responsiveNav:$("#navResponsive"),
+			toggleNav:$("#toggle-nav"),
+			categories:$("#categories"),
+			categoriesToggle:$("#toggle-cats"),
+			categoriesOpen:false,
+			search:$("#search-bar"),
+			searchOpen:false,
+			closeSearch:$("#close-search"),
+			openSearch:$("#open-search"),
+			splash:$("#splash"),
+			content:$("#page-main")
 		},
 		// single post html elements
 		singlePost:{
+			content:$("#single-post"),
 			header: $("#single-post-header"),
 			headerToggle: $("#single-post-header .toggle"),
 			headerOpen: true,
@@ -43,7 +80,6 @@
 			splash: $("#single-splash"),
 			discussionLink: $("#single-discussion"),
 			titleClick:function(){
-				//let height = blogObj.singlePost.header.height();
 				$("html, body").animate({ scrollTop: 0 });
 			},
 			discussionClick:function(){
@@ -79,126 +115,49 @@
 		}
 	};
 	//***********************************************************************************************
-	// Blog Object
+	// Interactions
 	//***********************************************************************************************
+	// Window Resizing
+	$( window ).resize(function() {
+			if ($(window).width() > 767) {
+					header.css("display","none");
+			}
+	});
+	// Window Scrolling
+	window.addEventListener('scroll', function(e) {
+		app.checkScroll();
+	});
+	app.checkScroll();
+	// Responsive Navigation Toggle
+	app.page.toggleNav.click(function(event) {
+			app.page.responsiveNav.slideToggle(250, function() {
+				// Animation complete.
+			});
+	});
+	// Search Bar
+	app.page.openSearch.click(function(event) {
+		app.toggleElement('search');
+	});
+	app.page.closeSearch.click(function(event) {
+		app.toggleElement('search');
+	});
+	app.page.categoriesToggle.click(function(event) {
+		app.toggleElement('categories');
+	});
+	// Post Thumbnail Clicks
+	$(document).delegate(".post-header", "click", function() {
+   	window.location = $(this).find("a.hidden-link").attr("href");
+	});
+	// Single Post Title Link
 	app.singlePost.title.click(function(event) {
 		app.singlePost.titleClick();
 	});
+	// Single Post Discussions Link
 	app.singlePost.discussionLink.click(function(event) {
 		app.singlePost.discussionClick();
 	});
+	// Single Post Header Toggle
 	app.singlePost.toggle.click(function(event) {
 		app.singlePost.toggleClick();
-	});
-
-	let windowHeight = $(window).height(),
-	header = $("#navResponsive"),
-	categories = $("#categories"),
-	catHeight = categories.height(),
-	search = $("#search-bar"),
-	searchHeight = search.height(),
-	searchOpen = false,
-	catsOpen = false,
-	closeSearch = $("#close-search"),
-	openSearch = $("#open-search"),
-	content = $("#page-main");
-
-	$("#toggle-nav").click(function(event) {
-			//console.log('weeeee');
-			header.slideToggle( "fast", function() {
-	    // Animation complete.
-	  	});
-	});
-
-	const toggleElement = (item) => {
-		let htmlEl = null;
-		switch(item) {
-			case 'search':
-				htmlEl = search;
-				break;
-			case 'categories':
-				htmlEl = categories;
-				break;
-		}
-		htmlEl.slideToggle( "fast", function() {
-		// Animation complete.
-			switch(item) {
-				case 'search':
-					searchOpen = !searchOpen;
-					break;
-				case 'categories':
-					catsOpen = !catsOpen;
-					break;
-			}
-		});
-	}
-
-	// Search Bar
-	openSearch.click(function(event) {
-		toggleElement('search');
-	});
-	$("#close-search").click(function(event) {
-		toggleElement('search');
-	});
-	$("#toggle-cats").click(function(event) {
-		toggleElement('categories');
-	});
-
-	$( window ).resize(function() {
-			if ($(window).width() > 767) {
-			   	header.css("display","none");
-			}
-	});
-
-
-	let headerScroll = 300;
-	const checkScroll = () => {
-		if(document.getElementById("page-main") !== null) {
-			if(window.pageYOffset>=headerScroll){
-				// Main Page
-				let padding = windowHeight*0.02;
-				search.css("position","fixed");
-				search.css("top","100px");
-				if(searchOpen && catsOpen){
-					// Search and Catergories Open
-					catHeight = categories.height();
-					content.css("top",searchHeight+catHeight+padding);
-				}
-				else if(searchOpen && !catsOpen){
-					// Search Open
-					content.css("top",searchHeight+padding);
-				}
-				else {
-					// Do Nothing
-				}
-			}
-			else if(window.pageYOffset<headerScroll){
-				search.css("position","relative");
-				search.css("top","0");
-				content.css("top","0");
-			}
-		}
-		if(document.getElementById("single-post") !== null){
-			// Single Post
-			let scrollLimit = 450;
-			if(window.pageYOffset===0){
-				app.singlePost.headerAutoHide = true;
-			}
-			if(window.pageYOffset>=scrollLimit&&app.singlePost.headerOpen&&app.singlePost.headerAutoHide){
-				app.singlePost.headerAutoHide=false;
-					app.singlePost.toggleClick();
-			}
-		}
-	}
-	window.addEventListener('scroll', function(e) {
-		checkScroll();
-	});
-	checkScroll();
-
-
-
-
-	$(document).delegate(".post-header", "click", function() {
-   	window.location = $(this).find("a.hidden-link").attr("href");
 	});
 });
