@@ -1,0 +1,98 @@
+main.single{
+	article.single{
+		width:100%;
+		line-height: 1.75em;
+	}
+	img.full{
+		width:100%;
+	}
+}
+#single-post-header{
+	background: black url('img/pw_maze_black.png') repeat;
+	position: fixed;
+	top:100px;
+	z-index:50;
+	width:100%;
+	// Post Title
+	h1{
+		text-align: center;
+		font-family: $marker;
+		a{
+			color:white;
+			text-decoration: none;
+		}
+		a:hover{
+			color:$theme-accent;
+		}
+	}
+	// Post Details
+	.post-details{
+		@include flex-row;
+		@include flex-center;
+		padding:0.5em;
+		span{
+			@include flex-row;
+			@include flex-center;
+			@include flex-push;
+			color:white;
+			a{
+				color:white;
+				text-decoration: none;
+			}
+			a:hover{
+				color:$theme-accent;
+			}
+			i{
+				margin-left:0.5em;
+			}
+		}
+		span.author a{
+			margin-left:0.5em;
+		}
+	}
+	// Edit
+	.post-edit-link{
+		display:block;
+		position:absolute;
+		bottom:-2.25em;
+		right:1em;
+		font-size: 1em;
+		padding:1em;
+		border-radius: 50%;
+		background: $theme-medium;
+		color:white;
+		height:1em;
+		width:1em;
+		text-align: center;
+	}
+}
+#toggle-header{
+	color:white;
+	text-decoration: none;
+}
+#toggle-header:hover{
+	color:$theme-accent;
+}
+// Splash
+.post-thumb-full{
+	width:100%;
+	height:500px;
+	background-position: center;
+	background-size:cover;
+	//background-attachment: fixed;
+	position: relative;
+	top:calc(100px + 1em);
+	margin-bottom: calc(100px + 1em);
+	z-index:2;
+	img{
+		width:100%;
+	}
+}
+#toggle-header{
+	display:block;
+	width:100%;
+	font-size:0.5em;
+	text-align:center;
+	color:white;
+	padding:0.25em;
+}

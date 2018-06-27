@@ -1,0 +1,588 @@
+//==============================================================================
+// SASS Variables
+//==============================================================================
+// Colors
+$theme-white:#FFF;
+$theme-dark:#131313;
+$theme-medium:#282828;
+$theme-light:#DDDDDD;
+$theme-accent:#1a98da;
+// Fonts
+$typeface: 'Montserrat', sans-serif;
+$script: 'Kaushan Script', cursive;
+$marker: 'Permanent Marker', cursive;
+// Font Base
+$base-font-size:18px;
+
+$padding-one:4%;
+$padding-two:2%;
+//==============================================================================
+// Mixins
+//==============================================================================
+@mixin flex-column{
+	display: -webkit-flex;
+	display: flex;
+	flex-direction: column;
+}
+@mixin flex-row{
+	display: -webkit-flex;
+	display: flex;
+	flex-direction: row;
+}
+@mixin flex-center{
+	justify-content: center;
+	align-items: center;
+}
+@mixin flex-push{
+	flex-grow:1;
+}
+@mixin flex-wrap{
+	flex-wrap:wrap;
+}
+//==============================================================================
+// Mixin - Classes
+//==============================================================================
+.flex-push{
+	@include flex-push;
+}
+//==============================================================================
+// Main Layout with Stiky Footer
+//==============================================================================
+body,html{min-height:100vh;}
+body{padding-top:100px;}
+.site {
+	@include flex-column;
+	font-family: $typeface;
+	font-size: $base-font-size;
+}
+main{
+	position: relative;
+	@include flex-row;
+	background: white url('img/sayagata-400px.png') repeat;
+  flex-grow:1;
+	padding:$padding-two;
+	margin-bottom: 200px;
+	z-index: 2;
+}
+/*
+main{
+	width:80%;
+}
+
+.dynamic-margin{
+	margin-left:20%;
+}
+.dynamic-position{
+	position:fixed !important;
+	top:calc(100px + 4%);
+}
+*/
+aside{
+	position:relative;
+	width:20%;
+	padding:0 $padding-two 0 0;
+	form.search{
+		width:100%;
+		@include flex-row;
+			input[type=search]{
+				display: inline-flex;
+				flex-grow: 1;
+				margin:0 1em;
+				line-height: 2em;
+				padding:0.5em;
+				border-radius: 2em;
+				background: $theme-medium;
+				color:white;
+				border:none;
+				outline:none;
+			}
+	}
+}
+footer{
+	@include flex-row;
+	@include flex-center;
+	position: fixed;
+	bottom:0;
+	height:200px;
+	width:100%;
+	background: black url('img/pw_maze_black.png') repeat;
+	z-index:1;
+	color:white;
+	a,a:visited{
+		color:white;
+	}
+	a:hover{
+		color:$theme-accent;
+	}
+}
+//==============================================================================
+// Header - Navigation - Splash
+//==============================================================================
+header{
+	min-height:100px;
+	//padding:0 $padding-one;
+	position:fixed;
+	top:0px;
+	width:100%;
+	z-index:100;
+	background:white;
+	width:100%;
+	text-overflow: hidden;
+	//height:100px;
+	//z-index: 5;
+	.nickname-spill-control{
+		height:100px;
+		width:100%;
+		overflow: hidden;
+		position: absolute;
+		.nickname{
+			width:100%;
+			position: absolute;
+			top:-0.5em;
+			text-align: center;
+			font-family: $marker;
+			color:rgba(0,0,0,0.05);
+			font-size:11em;
+		}
+	}
+	.row{
+		@include flex-row;
+		@include flex-center;
+	}
+	.logo{
+		width:150px;
+		height:100px;
+		margin-left: $padding-one;
+		img{
+			width:100%;
+		}
+	}
+}
+
+
+#navStandard {
+  overflow: hidden;
+	margin-right: $padding-one;
+	a{
+		display: inline-block;
+		color: black;
+		text-align: center;
+		margin-left:2em;
+		text-decoration: none;
+		height:100px;
+		line-height: 100px;
+	}
+	a:hover {
+		color: $theme-accent;
+	}
+	a.active {
+		color: $theme-accent;
+		height:80px;
+		line-height: 80px;
+		border-bottom:10px solid $theme-accent;
+	}
+	a.icon{
+		display: none;
+		font-size: 1.5em;
+	}
+	a.search{
+
+	}
+}
+#navResponsive{
+	display:none;
+	width:100%;
+	position: absolute;
+	top:100px;
+	z-index:1000;
+	a{
+		display:block;
+		padding: 10px;
+		text-align: center;
+		background:white;
+		text-decoration: none;
+		color:black;
+	}
+}
+#splash{
+	@include flex-column;
+	@include flex-center;
+	width:100%;
+	background: black url('img/pw_maze_black.png') repeat;
+	overflow: hidden;
+	.fill-image{
+		@include flex-column;
+		@include flex-center;
+		width:900px;
+		height:300px;
+		img{
+			position: absolute;
+			width:100%;
+			z-index: 1;
+			top:0px;
+			left:0px;
+		}
+		/*
+		.initials{
+			position: absolute;
+			font-family:$script;
+			font-size:25em;
+			color:#FFF;
+			opacity:0.05;
+			z-index: 2;
+			user-select: none;
+		}
+		*/
+		h1{
+			color:#FFF;
+			font-size:3em;
+			text-shadow: black 0.05em 0.05em 0.1em;
+			z-index: 3;
+		}
+		h2{
+			color:#FFF;
+			font-size:2em;
+			text-shadow: black 0.05em 0.05em 0.1em;
+			z-index: 3;
+		}
+		h3{
+			color:#FFF;
+			font-size:1em;
+			text-shadow: black 0.05em 0.05em 0.1em;
+			z-index: 3;
+		}
+	}
+}
+
+#search-bar{
+	@include flex-column;
+	@include flex-center;
+	background: $theme-medium;
+	padding:0.5em 0;
+	width:100%;
+	z-index:10;
+	display:none;
+	.section{
+		@include flex-row;
+		@include flex-center;
+		text-align: center;
+		width:100%;
+		margin:0.5em 0;
+		color:white;
+		li.categories{
+			list-style: none;
+			font-size:1.25em;
+			ul{
+				list-style: none;
+				li{
+
+					display:inline;
+					a{
+						font-size:0.75em;
+						text-decoration: none;
+						color:#999;
+					}
+				}
+			}
+		}
+		form{
+			width:40%;
+			min-width:350px;
+			@include flex-row;
+			@include flex-center;
+		}
+	}
+	input[type=search]{
+		background:$theme-dark;
+		border:0;
+		outline:none;
+		flex-grow:1;
+		margin-right:0.5em;
+		color:white;
+		font-size:1em;
+		padding:0.5em;
+		border-radius: 2em;
+	}
+	button{
+		background:none;
+		border:0;
+		outline:none;
+		font-size:1em;
+		padding:0.5em;
+		color:white;
+		margin-right:0.5em;
+		//border-radius: 2em;
+	}
+	button:hover{
+		cursor: pointer;
+	}
+	a{
+		font-size:1em;
+		padding:0.5em;
+		margin-right:0.5em;
+		color:white;
+	}
+	a:hover{
+		cursor: pointer;
+	}
+}
+#categories.section{
+	display:none;
+}
+#open-search{
+	//display:none;
+	//line-height: 2em;
+	//text-align: center;
+	//padding:0.5em;
+	//border-radius: 2em;
+	//background: $theme-medium;
+	//color:white;
+	//width:2em;
+	//height:2em;
+	//position: fixed;
+	//z-index:200;
+	//bottom:1em;
+	//left:1em;
+}
+#close-search{
+	display:block;
+}
+//==============================================================================
+// Time Fo' Wordpress
+//==============================================================================
+
+section{
+	@include flex-row;
+	@include flex-wrap;
+	@include flex-center;
+	width:100%;
+}
+
+article.loop{
+	width:calc(48% - 4px);
+	margin:0 0 2em $padding-two;
+	//border-top:solid 2px #FFF;
+	border:solid 1px $theme-light;
+	background:white;
+	// Thumbnail
+	.post-thumb,.post-no-thumb{
+		width:100%;
+		@include flex-column;
+		@include flex-center;
+		height:200px;
+		background-position: center;
+		background-size:cover;
+		img{
+			width:100%;
+		}
+	}
+	// Post Comments
+	.post-edit-link{
+			display:block;
+			position:absolute;
+			bottom:-1em;
+			right:1em;
+			font-size: 1em;
+			padding:1em;
+			border-radius: 50%;
+			background: $theme-medium;
+			color:white;
+			height:1em;
+			width:1em;
+			text-align: center;
+			z-index:10;
+	}
+	.comments,.edit,.post-link{
+		position: absolute;
+		display: inline-block;
+		line-height: 2em;
+		font-size: 1em;
+		border-radius: 1em;
+		padding: 0 1em;
+		bottom:-1em;
+		background: $theme-medium;
+		color:white;
+		text-decoration: none;
+		a{
+			color:white;
+			text-decoration: none;
+		}
+	}
+	.post-link{
+		right:1em;
+	}
+	.comments{
+		left:1em;
+	}
+	.edit{
+		right:1em;
+	}
+	// Post Title
+	h2{
+		a{
+			color:black;
+			text-decoration: none;
+			//font-size: 1.5em;
+			font-weight: bold;
+			z-index: 3;
+		}
+	}
+	// Post Details
+	.post-details{
+		@include flex-row;
+		//@include flex-center;
+		//position: absolute;
+		//bottom:0;
+		width:100%;
+		margin:1em 0;
+		//z-index: 3;
+		//background: rgba(255,255,255,0.75);
+		span{
+			//@include flex-center;
+			font-size: 0.75em;
+			display:inline-flex;
+			flex-grow: 1;
+			//line-height: 1em;
+			//padding:0.5em;
+			a{
+				margin-left: 0.5em;
+			}
+		}
+		.author{
+			justify-content: flex-start;
+		}
+		.date{
+			justify-content: flex-end;
+		}
+	}
+	// Post Body
+	.post-body{
+		padding:2em;
+		// Post Excerpt
+		.post-excerpt{
+			padding:$padding-two 0;
+			margin:1em 0;
+			border-top:1px solid $theme-light;
+			border-bottom:1px solid $theme-light;
+		}
+	}
+}
+
+.post-header:hover{
+	.post-thumb::after{
+		content:'Continue Reading...';
+		font-family: $marker;
+		font-size:2em;
+		line-height: 200px;
+		text-align:center;
+		color:rgba(255,255,255,255.25);
+		overflow:hidden;
+		display:inline-block;
+		width:100%;
+		height:100%;
+		z-index:5;
+		background:rgba(0,0,0,0.5);
+		cursor: pointer;
+	}
+}
+
+
+
+a:hover{
+	color:$theme-accent;
+}
+
+
+h1,h2,h3{
+	font-weight: bold;
+	margin:0.5em 0;
+}
+h1{
+	font-size:2.5em;
+}
+h2{
+	font-size:2em;
+}
+h3{
+	font-size:1.5em;
+}
+ul,ol{
+	li{
+		width:90%;
+		list-style-position: inside;
+		text-indent: -1em;
+		padding-left: 1em;
+		margin:0.5em auto;
+	}
+}
+ul{
+	list-style: disc;
+}
+ol{
+	list-style: lower-roman;
+}
+strong{
+	font-weight: bold;
+}
+em{
+	font-style: italic;
+}
+blockquote{
+	padding:1em;
+	margin:1em auto;
+	width:80%;
+	font-size:1.5em;
+	text-align: center;
+	font-family: $marker;
+}
+blockquote::before{
+	content:'"';
+	font-size: 10em;
+	position: absolute;
+	top:50%;
+	left:0;
+	color:rgba(0,0,0,0.15);
+	//margin-top:0.25em;
+	margin-right:0.25em;
+}
+blockquote::after{
+	content:'"';
+	font-size: 10em;
+	position: absolute;
+	top:50%;
+	right:0;
+	color:rgba(0,0,0,0.15);
+	//margin-top:0.25em;
+	margin-right:0.25em;
+}
+author{
+	display:block;
+	font-size:0.75em;
+}
+img.alignright { float: right; margin: 0 0 1em 1em; }
+img.alignleft { float: left; margin: 0 1em 1em 0; }
+img.aligncenter { display: block; margin-left: auto; margin-right: auto; }
+.alignright { float: right; }
+.alignleft { float: left; }
+.aligncenter { display: block; margin-left: auto; margin-right: auto; }
+code{
+	margin:0.5em auto;
+	width:80%;
+}
+iframe{
+	display:block;
+	margin:auto;
+}
+#footer-cats{
+	margin:1em 0;
+	padding:1em 0;
+	border-top:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: inset 0 0 0px 9999px $theme-dark;
+}
+
+main.wp-page{
+	height:calc(100vh - 200px);
+}

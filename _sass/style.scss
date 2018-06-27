@@ -1,0 +1,22 @@
+/*
+Theme Name: Striker Black and White
+Theme URI:
+Author: Sean Morgan
+Author URI: http://www.seantbmorgan.com/
+Description: Custom Theme Modeled Of of HTML5blank
+Version: 1.0
+License:
+License URI:
+Text Domain:
+Tags:
+*/
+
+@import '_reset';
+@import '_animate';
+@import '_master';
+@import '_single';
+@import '_comments';
+@import '_filtered';
+@import '_page';
+// Importing Media Last To Ensure Styling
+@import '_media';
