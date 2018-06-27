@@ -9,12 +9,12 @@
 				// Currently Main Page
 				let scrollLimit = app.page.splash.height(),
 				padding = $(window).height()*0.02
-				if(window.pageYOffset>=scrollLimit){
+				if(window.pageYOffset>=scrollLimit && app.page.searchOpen){
 					app.page.search.css("position","fixed");
 					app.page.search.css("top","100px");
 					app.page.content.css("top",app.page.search.height()+padding);
 				}
-				else if(window.pageYOffset<scrollLimit){
+				else if(window.pageYOffset<scrollLimit && app.page.searchOpen){
 					app.page.search.css("position","relative");
 					app.page.search.css("top","0");
 					app.page.content.css("top","0");
