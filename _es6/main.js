@@ -1,11 +1,50 @@
  $(document).ready(function(){
 	 console.log("Welcome to Sean Morgan's Blog: Everything Digital Media, and Everything Striking.");
 	 //***********************************************************************************************
+	 // Adding CSS Animations to jQuery
+	 //***********************************************************************************************
+	 $.fn.extend({
+	   animateCss: function(animationName, callback) {
+	     var animationEnd = (function(el) {
+	       var animations = {
+	         animation: 'animationend',
+	         OAnimation: 'oAnimationEnd',
+	         MozAnimation: 'mozAnimationEnd',
+	         WebkitAnimation: 'webkitAnimationEnd',
+	       };
+
+	       for (var t in animations) {
+	         if (el.style[t] !== undefined) {
+	           return animations[t];
+	         }
+	       }
+	     })(document.createElement('div'));
+
+	     this.addClass('animated ' + animationName).one(animationEnd, function() {
+	       $(this).removeClass('animated ' + animationName);
+
+	       if (typeof callback === 'function') callback();
+	     });
+
+	     return this;
+	   },
+	 });
+	 //***********************************************************************************************
 	 // Blog Object
 	 //***********************************************************************************************
 	let app = {
+		viewport:{
+			width:Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+			height:Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
+			reset:()=>{
+				app.viewport.width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+				app.viewport.height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+				// Single Page Splashes
+				app.singlePost.splash.css({"height":app.viewport.height - app.singlePost.header.height(),"top":app.singlePost.header.height()});
+			}
+		},
 		checkScroll:() => {
-			if(app.page.content !== null) {
+			if(app.page.content.length) {
 				// Currently Main Page
 				let scrollLimit = app.page.splash.height(),
 				padding = $(window).height()*0.02
@@ -20,12 +59,9 @@
 					app.page.content.css("top","0");
 				}
 			}
-			if(app.singlePost.content !== null){
+			if(app.singlePost.content.length){
 				// Single Post
-				let scrollLimit = 450;
-				if(window.pageYOffset===0){
-					app.singlePost.headerAutoHide = true;
-				}
+				let scrollLimit = app.viewport.height-app.page.header.height();
 				if(window.pageYOffset>=scrollLimit&&app.singlePost.headerOpen&&app.singlePost.headerAutoHide){
 					app.singlePost.headerAutoHide=false;
 						app.singlePost.toggleClick();
@@ -56,6 +92,7 @@
 		},
 		// page
 		page:{
+			header:$("header"),
 			responsiveNav:$("#navResponsive"),
 			toggleNav:$("#toggle-nav"),
 			categories:$("#categories"),
@@ -66,12 +103,14 @@
 			closeSearch:$("#close-search"),
 			openSearch:$("#open-search"),
 			splash:$("#splash"),
-			content:$("#page-main")
+			content:$("#page-main"),
+			footer:$("footer")
 		},
 		// single post html elements
 		singlePost:{
 			content:$("#single-post"),
 			header: $("#single-post-header"),
+			headerHeightConst: $("#single-post-header").height(),
 			headerToggle: $("#single-post-header .toggle"),
 			headerOpen: true,
 			headerAutoHide: true,
@@ -79,6 +118,7 @@
 			title: $("#single-post-title"),
 			splash: $("#single-splash"),
 			discussionLink: $("#single-discussion"),
+			// Interactions
 			titleClick:function(){
 				$("html, body").animate({ scrollTop: 0 });
 			},
@@ -103,7 +143,7 @@
 					});
 				}else{
 					// Open Single Post Header
-					app.singlePost.splash.animate({top : "100px","margin-bottom" : "100px"},250, function(){
+					app.singlePost.splash.animate({top : app.singlePost.headerHeightConst+"px","margin-bottom" : "100px"},250, function(){
 						// Animation Complete
 					});
 				}
@@ -119,6 +159,7 @@
 	//***********************************************************************************************
 	// Window Resizing
 	$( window ).resize(function() {
+		app.viewport.reset();
 			if ($(window).width() > 767) {
 					header.css("display","none");
 			}
@@ -160,4 +201,18 @@
 	app.singlePost.toggle.click(function(event) {
 		app.singlePost.toggleClick();
 	});
+	//***********************************************************************************************
+	// On Load
+	//***********************************************************************************************
+	if(app.page.content.length){
+		app.page.footer.css({"display":"flex"});
+	}
+	if(app.singlePost.content.length){
+		app.singlePost.splash.css({"opacity":1,"height":app.viewport.height - app.singlePost.header.height(),"top":app.singlePost.header.height()});
+		app.singlePost.splash.animateCss('fadeIn', function() {
+  		// Animation Complete
+			app.page.footer.css({"display":"flex"});
+		});
+	}
+
 });

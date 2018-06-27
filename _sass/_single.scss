@@ -77,14 +77,16 @@ main.single{
 // Splash
 .post-thumb-full{
 	width:100%;
-	height:500px;
+	height:100vh;
+	background:#FFF;
 	background-position: center;
 	background-size:cover;
 	//background-attachment: fixed;
 	position: relative;
-	top:calc(100px + 1em);
+	//top:calc(100px + 1em);
 	margin-bottom: calc(100px + 1em);
 	z-index:2;
+	opacity:0;
 	img{
 		width:100%;
 	}
