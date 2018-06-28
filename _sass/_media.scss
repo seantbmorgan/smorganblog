@@ -154,6 +154,21 @@
 	}
 	article.loop{
 		width:calc(98% - 4px);
+		.comments,.post-link{
+			font-size:0.8em;
+		}
+	}
+
+	.post-header:hover{
+		.post-thumb::after{
+			font-size:1.5em;
+		}
+	}
+	h1{
+
+	}
+	h2{
+		font-size:1.5em;
 	}
 
 }
