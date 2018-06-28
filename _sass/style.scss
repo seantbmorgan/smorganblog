@@ -12,11 +12,11 @@ Tags:
 */
 
 @import '_reset';
-@import '_animate';
 @import '_master';
 @import '_single';
 @import '_comments';
 @import '_filtered';
 @import '_page';
-// Importing Media Last To Ensure Styling
+// Importing Media and Animate Last To Ensure Styling
 @import '_media';
+@import '_animate';

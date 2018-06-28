@@ -37,7 +37,11 @@
 <!-- post thumbnail -->
 <?php if ( has_post_thumbnail()) : // Check if Thumbnail exists ?>
 	<?php $thumbUrl = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>
-	<div id="single-splash" style="background-image:url('<?php echo $thumbUrl; ?>;')" class="post-thumb-full" ></div>
+	<div id="single-splash" style="background-image:url('<?php echo $thumbUrl; ?>;')" class="post-thumb-full" >
+		<div class="fill flex-col flex-center">
+			<a id="skip-splash" href="javascript:void(0);"><i class="fa fa-angle-double-down"></i></a>
+		</div>
+	</div>
 	<!--<a href="<?php //the_permalink(); ?>" title="<?php //the_title(); ?>" class="post-thumb-full">
 		<?php //the_post_thumbnail(); // Fullsize image for the single post ?>
 	</a>-->

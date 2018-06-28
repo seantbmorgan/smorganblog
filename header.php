@@ -32,7 +32,9 @@
 
 	</head>
 	<body <?php body_class('site'); ?>>
-
+		<div id="loading">
+			<div class="lds-ripple"><div></div><div></div></div>
+		</div>
 		<!-- wrapper -->
 		<!--<div class="wrapper">-->
 

@@ -45,10 +45,62 @@ $padding-two:2%;
 .flex-push{
 	@include flex-push;
 }
+.flex-col{
+	@include flex-column;
+}
+.flex-center{
+	@include flex-center
+}
+
+
+#loading{
+	@include flex-column;
+	@include flex-center;
+	width:100%;
+	height:100%;
+	position: fixed;
+	top:0;
+	left:0;
+	background:white;
+	z-index: 2000;
+	.lds-ripple {
+	  display: inline-block;
+	  position: relative;
+	  width: 64px;
+	  height: 64px;
+	}
+	.lds-ripple div {
+	  position: absolute;
+	  border: 4px solid $theme-medium;
+	  opacity: 1;
+	  border-radius: 50%;
+	  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+	}
+	.lds-ripple div:nth-child(2) {
+	  animation-delay: -0.5s;
+	}
+	@keyframes lds-ripple {
+	  0% {
+	    top: 28px;
+	    left: 28px;
+	    width: 0;
+	    height: 0;
+	    opacity: 1;
+	  }
+	  100% {
+	    top: -1px;
+	    left: -1px;
+	    width: 58px;
+	    height: 58px;
+	    opacity: 0;
+	  }
+	}
+}
+
 //==============================================================================
 // Main Layout with Stiky Footer
 //==============================================================================
-body,html{min-height:100vh;}
+body,html{min-height:100vh;min-width:320px;}
 body{padding-top:100px;}
 .site {
 	@include flex-column;
@@ -209,7 +261,7 @@ header{
 	@include flex-column;
 	@include flex-center;
 	width:100%;
-	background: black url('img/pw_maze_black.png') repeat;
+	//background: black url('img/poster.png');
 	overflow: hidden;
 	.fill-image{
 		@include flex-column;
@@ -234,24 +286,66 @@ header{
 			user-select: none;
 		}
 		*/
-		h1{
-			color:#FFF;
-			font-size:3em;
-			text-shadow: black 0.05em 0.05em 0.1em;
-			z-index: 3;
-		}
-		h2{
-			color:#FFF;
-			font-size:2em;
-			text-shadow: black 0.05em 0.05em 0.1em;
-			z-index: 3;
-		}
 		h3{
 			color:#FFF;
 			font-size:1em;
 			text-shadow: black 0.05em 0.05em 0.1em;
 			z-index: 3;
 		}
+	}
+}
+#splash{
+	position: relative;
+	height:calc(100vh - 100px);
+	width:100%;
+	z-index:10;
+}
+#splash::after{
+	content:'';
+	height:100%;
+	width:100%;
+	background: url('img/cover_after.png') repeat;
+	z-index:20;
+}
+#video-splash {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+}
+video {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    min-height: 50%;
+    min-width: 50%;
+}
+#caption{
+	//@include flex-column;
+	//@include flex-center;
+	position: absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	z-index:30;
+	h1,h2{
+		color:#FFF;
+		//font-family: $marker;
+		text-shadow: black 0.02em 0.02em 0.05em;
+		z-index: 3;
+		text-align: center;
+		animation-fill-mode: forwards;
+	}
+	h1{
+		font-size: 3em;
+	}
+	h2{
+		font-size:2em;
 	}
 }
 
@@ -351,6 +445,25 @@ header{
 //==============================================================================
 // Time Fo' Wordpress
 //==============================================================================
+#skip-splash{
+	width:100%;
+	padding:0.5em 0;
+	background:rgba(0,0,0,0.75);
+	position: absolute;
+	bottom:0;
+	margin:0 auto;
+	font-size:1em;
+	color:white;
+	text-align: center;
+}
+#skip-splash:hover{
+	color:$theme-accent;
+}
+.fill{
+	position: relative;
+	width:100%;
+	height: 100%;
+}
 
 section{
 	@include flex-row;
@@ -438,8 +551,11 @@ article.loop{
 		margin:1em 0;
 		//z-index: 3;
 		//background: rgba(255,255,255,0.75);
+		.post-cats{
+		//@include flex-row;
+		}
 		span{
-			//@include flex-center;
+			@include flex-wrap;
 			font-size: 0.75em;
 			display:inline-flex;
 			flex-grow: 1;
@@ -491,6 +607,7 @@ article.loop{
 
 a:hover{
 	color:$theme-accent;
+	text-decoration: underline;
 }
 
 

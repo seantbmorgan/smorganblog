@@ -18,9 +18,11 @@
 
   //CSS
 	header{
-		.nickname{
-			font-size: 5em;
-			top:-0.25em;
+		.nickname-spill-control{
+			.nickname{
+				font-size: 5em;
+				top:-0.25em;
+			}
 		}
 	}
 
@@ -35,9 +37,11 @@
 
 	//CSS
 	header{
-		.nickname{
-			font-size: 5em;
-			top:-0.25em;
+		.nickname-spill-control{
+			.nickname{
+				font-size: 5em;
+				top:-0.25em;
+			}
 		}
 	}
 
@@ -63,9 +67,11 @@
 
 	//CSS
 	header{
-		.nickname{
-			font-size: 4em;
-			top:-0.15em;
+		.nickname-spill-control{
+			.nickname{
+				font-size: 4em;
+				top:-0.15em;
+			}
 		}
 	}
 
@@ -78,9 +84,16 @@
 			display: inline-block;
 		}
 	}
-	#navResponsive{
-		//display:inline-block;
-		//height:0px;
+
+	// Main
+	section{
+		@include flex-column;
+		//@include flex-wrap;
+		//@include flex-center;
+		//width:100%;
+	}
+	article.loop{
+		width:calc(98% - 4px);
 	}
 
 }
@@ -92,6 +105,15 @@
 
 @media (max-width: 480px) {
 
+	header{
+		.nickname-spill-control{
+			.nickname{
+				display:none;
+			}
+		}
+	}
+
+
 	// Navigation
 	#navStandard {
 		a{
@@ -99,6 +121,7 @@
 		}
 		a.icon,a.search{
 			display: inline-block;
+			margin-left:1em;
 		}
 	}
 	#navResponsive{
@@ -107,20 +130,30 @@
 	}
 
 	// Splash
-	#splash{
-		.fill-image{
-			.initials{
-				font-size:15em;
-			}
-			h1{
-				font-size:1.75em;
-				text-shadow: black 0.05em 0.05em 0.1em;
-			}
-			h2{
-				font-size:1.25em;
-				text-shadow: black 0.05em 0.05em 0.1em;
-			}
+	#video-splash {
+		left: -90%;
+	}
+
+	#caption{
+		h1{
+			font-size:1.5em;
+			text-shadow: black 0.05em 0.05em 0.1em;
 		}
+		h2{
+			font-size:1.25em;
+			text-shadow: black 0.05em 0.05em 0.1em;
+		}
+	}
+
+	// Main
+	section{
+		@include flex-column;
+		//@include flex-wrap;
+		//@include flex-center;
+		//width:100%;
+	}
+	article.loop{
+		width:calc(98% - 4px);
 	}
 
 }
