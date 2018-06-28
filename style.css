@@ -293,7 +293,10 @@ main.filtered { position: relative; top: 100px; }
   section { display: flex; flex-direction: column; }
   article.loop { width: calc(98% - 4px); }
   article.loop .comments, article.loop .post-link { font-size: 0.8em; }
+  #single-post-header .post-details { display: flex; flex-direction: column; }
+  #single-post-header .post-details span { margin: 0.2em 0; }
   .post-header:hover .post-thumb::after { font-size: 1.5em; }
+  h1 { font-size: 1.7em; }
   h2 { font-size: 1.5em; } }
 /*!
  * animate.css -http://daneden.me/animate
