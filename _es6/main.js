@@ -37,18 +37,15 @@
 			width:Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
 			height:Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
 			reset:()=>{
-				//if ($(window).width() > 767) {
-						//app.page.navResponsive.css("display","none");
-				//}
 				app.viewport.width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 				app.viewport.height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-				// Single Page Splashes
-				// app.singlePost.splash.css({"height":app.viewport.height - app.singlePost.header.height(),"top":app.singlePost.header.height()});
-				// Open Header
-				//console.log('hellow');
-				//console.log(app.singlePost.headerOpen);
 				if(!app.singlePost.headerOpen){
-					app.singlePost.toggleHeader(true,app.singlePost.setSplashSize);
+					app.singlePost.toggleHeader(true,function(){
+						// Reset Constant
+						app.singlePost.headerHeightConst = $("#single-post-header").height();
+						// Adjust Splash Size
+						app.singlePost.setSplashSize();
+					});
 				}else{
 					app.singlePost.setSplashSize();
 				}
@@ -186,10 +183,15 @@
 			toggleClick: () =>{
 				if(app.singlePost.headerOpen){
 					// Close Header
-					app.singlePost.toggleHeader(false,function(){console.log('no funciton');});
+					app.singlePost.toggleHeader(false,function(){
+						// Do Nothing
+					});
 				}else{
 					// Open Header
-					app.singlePost.toggleHeader(true,function(){console.log('no funciton');});
+					app.singlePost.toggleHeader(true,function(){
+						// Do Nothing
+
+					});
 				}
 			}
 		}
