@@ -337,16 +337,17 @@ video {
 		color:#FFF;
 		margin:0;
 		//font-family: $marker;
-		text-shadow: black 0.02em 0.02em 0.05em;
+		text-shadow: black 0.04em 0.04em 0.1em;
 		z-index: 3;
 		text-align: center;
 		animation-fill-mode: forwards;
 	}
 	h1{
-		font-size: 3em;
+		font-family: $marker;
+		font-size: 4em;
 	}
 	h2{
-		font-size:2em;
+		font-size:1.5em;
 	}
 }
 
