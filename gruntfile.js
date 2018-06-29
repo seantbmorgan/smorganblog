@@ -5,6 +5,10 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
+		eslint: {
+			target: ['_es6/main.js']
+		},
+
 		babel: {
 				options: {
 						sourceMap: true,
@@ -121,6 +125,7 @@ module.exports = function(grunt) {
 		}
 	});
 
+	grunt.loadNpmTasks('grunt-eslint');
 	grunt.loadNpmTasks('grunt-babel');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-concat');
@@ -134,5 +139,5 @@ module.exports = function(grunt) {
 
   //grunt.registerTask('prod', ['compass:dev', 'jshint', 'concat']);
   //grunt.registerTask('default', ['babel', 'uglify', 'compass:dev', 'copy', 'postcss', 'cssmin', 'clean', 'watch']);
-	grunt.registerTask('default', ['babel', 'uglify', 'compass:dev', 'postcss', 'clean', 'watch']);
+	grunt.registerTask('default', ['eslint', 'babel', 'uglify', 'compass:dev', 'postcss', 'clean', 'watch']);
 };

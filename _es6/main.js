@@ -7,10 +7,10 @@
 	   animateCss: function(animationName, callback) {
 	     var animationEnd = (function(el) {
 	       var animations = {
-	         animation: 'animationend',
-	         OAnimation: 'oAnimationEnd',
-	         MozAnimation: 'mozAnimationEnd',
-	         WebkitAnimation: 'webkitAnimationEnd',
+	         animation: "animationend",
+	         OAnimation: "oAnimationEnd",
+	         MozAnimation: "mozAnimationEnd",
+	         WebkitAnimation: "webkitAnimationEnd",
 	       };
 
 	       for (var t in animations) {
@@ -18,12 +18,12 @@
 	           return animations[t];
 	         }
 	       }
-	     })(document.createElement('div'));
+	     })(document.createElement("div"));
 
-	     this.addClass('animated ' + animationName).one(animationEnd, function() {
-	       $(this).removeClass('animated ' + animationName);
+	     this.addClass("animated " + animationName).one(animationEnd, function() {
+	       $(this).removeClass("animated " + animationName);
 
-	       if (typeof callback === 'function') callback();
+	       if (typeof callback === "function") callback();
 	     });
 
 	     return this;
@@ -32,7 +32,7 @@
 	 //***********************************************************************************************
 	 // Blog Object
 	 //***********************************************************************************************
-	let app = {
+	 let app = {
 		viewport:{
 			width:Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
 			height:Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
@@ -47,6 +47,7 @@
 						app.singlePost.setSplashSize();
 					});
 				}else{
+					app.singlePost.headerHeightConst = $("#single-post-header").height();
 					app.singlePost.setSplashSize();
 				}
 			}
@@ -55,7 +56,7 @@
 			if(app.page.content.length) {
 				// Currently Main Page
 				let scrollLimit = app.page.splash.height(),
-				padding = $(window).height()*0.02
+				padding = $(window).height()*0.02;
 				if(window.pageYOffset>=scrollLimit && app.page.searchOpen){
 					app.page.search.css("position","fixed");
 					app.page.search.css("top","100px");
@@ -79,20 +80,20 @@
 		toggleElement:(item) => {
 			let htmlEl = null;
 			switch(item) {
-				case 'search':
+				case "search":
 					htmlEl = app.page.search;
 					break;
-				case 'categories':
+				case "categories":
 					htmlEl = app.page.categories;
 					break;
 			}
 			htmlEl.slideToggle(250, function() {
 			// Animation complete.
 				switch(item) {
-					case 'search':
+					case "search":
 						app.page.searchOpen = !app.page.searchOpen;
 						break;
-					case 'categories':
+					case "categories":
 						app.page.catsOpen = !app.page.catsOpen;
 						break;
 				}
@@ -138,7 +139,7 @@
 			headerToggle: $("#single-post-header .toggle"),
 			headerOpen: true,
 			headerAutoHide: true,
-			toggle: $('#toggle-header'),
+			toggle: $("#toggle-header"),
 			title: $("#single-post-title"),
 			splash: $("#single-splash"),
 			discussionLink: $("#single-discussion"),
@@ -149,12 +150,12 @@
 			toggleHeader:(bool,callback) => {
 				let toggleChevron = () => {
 					if(app.singlePost.headerOpen){
-						app.singlePost.toggle.html('<i class="fa fa-chevron-down"></i>');
+						app.singlePost.toggle.html("<i class='fa fa-chevron-down'></i>");
 					}else{
-						app.singlePost.toggle.html('<i class="fa fa-chevron-up"></i>');
+						app.singlePost.toggle.html("<i class='fa fa-chevron-up'></i>");
 					}
 					app.singlePost.headerOpen = !app.singlePost.headerOpen;
-				}
+				};
 				if(bool){
 					// Open Single Post Header
 					app.singlePost.splash.animate({top : app.singlePost.headerHeightConst+"px","margin-bottom" : app.singlePost.headerHeightConst+"px"},250, function(){
@@ -204,7 +205,7 @@
 		app.viewport.reset();
 	});
 	// Window Scrolling
-	window.addEventListener('scroll', function(e) {
+	window.addEventListener("scroll", function(e) {
 		app.checkScroll();
 	});
 	app.checkScroll();
@@ -220,13 +221,13 @@
 	});
 	// Search Bar
 	app.page.openSearch.click(function(event) {
-		app.toggleElement('search');
+		app.toggleElement("search");
 	});
 	app.page.closeSearch.click(function(event) {
-		app.toggleElement('search');
+		app.toggleElement("search");
 	});
 	app.page.categoriesToggle.click(function(event) {
-		app.toggleElement('categories');
+		app.toggleElement("categories");
 	});
 	// Post Thumbnail Clicks
 	$(document).delegate(".post-header", "click", function() {
@@ -251,15 +252,18 @@
 		// Main Page (Index)
 		app.page.footer.css({"display":"flex"});
 	}
-	if(app.singlePost.content.length){
+	else if(app.singlePost.content.length){
 		// Single Post
 		app.singlePost.setSplashSize();
-		app.singlePost.splash.animateCss('fadeIn', function() {
+		app.singlePost.splash.animateCss("fadeIn", function() {
   		// Animation Complete
 			app.page.footer.css({"display":"flex"});
 		});
+	}else{
+		// Further Page Work Here
+		app.page.footer.css({"display":"flex"});
 	}
-	app.page.loading.animateCss('fadeOut', function() {
+	app.page.loading.animateCss("fadeOut", function() {
 		// Animation Complete
 		app.page.loading.css({"display" : "none"});
 	});

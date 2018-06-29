@@ -204,8 +204,6 @@ iframe { display: block; margin: auto; width: 100%; }
 
 input:-webkit-autofill { -webkit-box-shadow: inset 0 0 0px 9999px #131313; }
 
-main.wp-page { height: calc(100vh - 200px); }
-
 main.single article.single { width: 100%; line-height: 1.75em; }
 main.single img.full { width: 100%; }
 
@@ -258,6 +256,8 @@ main.filtered { position: relative; top: 100px; }
 #filtered-header { background: black url("img/pw_maze_black.png") repeat; position: fixed; top: 100px; z-index: 100; width: 100%; min-height: 100px; }
 #filtered-header h1 { text-align: center; font-family: "Permanent Marker", cursive; }
 #filtered-header h1 a { color: white; text-decoration: none; }
+
+main.wp-page { height: calc(100vh - 200px); padding: 0; }
 
 #page-header { background: black url("img/pw_maze_black.png") repeat; position: fixed; top: 100px; z-index: 100; width: 100%; min-height: 100px; }
 #page-header h1 { text-align: center; font-family: "Permanent Marker", cursive; }
