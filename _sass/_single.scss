@@ -17,6 +17,7 @@ main.single{
 	h1{
 		text-align: center;
 		font-family: $marker;
+		margin:0.25em 0;
 		a{
 			color:white;
 			text-decoration: none;
@@ -67,13 +68,7 @@ main.single{
 		z-index: 2;
 	}
 }
-#toggle-header{
-	color:white;
-	text-decoration: none;
-}
-#toggle-header:hover{
-	color:$theme-accent;
-}
+
 // Splash
 .post-thumb-full{
 	width:100%;
@@ -91,11 +86,17 @@ main.single{
 		width:100%;
 	}
 }
+#toggle-header:hover{
+	color:$theme-accent;
+	background:rgba(0,0,0,0.75);
+}
 #toggle-header{
+	text-decoration: none;
 	display:block;
 	width:100%;
 	font-size:0.5em;
 	text-align:center;
 	color:white;
-	padding:0.25em;
+	padding:1em 0;
+	background:rgba(0,0,0,0.5);
 }

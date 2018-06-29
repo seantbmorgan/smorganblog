@@ -1,4 +1,4 @@
- $(document).ready(function(){
+ 	$(document).ready(function(){
 	 console.log("Welcome to Sean Morgan's Blog: Everything Digital Media, and Everything Striking.");
 	 //***********************************************************************************************
 	 // Adding CSS Animations to jQuery
@@ -37,10 +37,21 @@
 			width:Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
 			height:Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
 			reset:()=>{
+				//if ($(window).width() > 767) {
+						//app.page.navResponsive.css("display","none");
+				//}
 				app.viewport.width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 				app.viewport.height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 				// Single Page Splashes
-				app.singlePost.splash.css({"height":app.viewport.height - app.singlePost.header.height(),"top":app.singlePost.header.height()});
+				// app.singlePost.splash.css({"height":app.viewport.height - app.singlePost.header.height(),"top":app.singlePost.header.height()});
+				// Open Header
+				//console.log('hellow');
+				//console.log(app.singlePost.headerOpen);
+				if(!app.singlePost.headerOpen){
+					app.singlePost.toggleHeader(true,app.singlePost.setSplashSize);
+				}else{
+					app.singlePost.setSplashSize();
+				}
 			}
 		},
 		checkScroll:() => {
@@ -134,6 +145,36 @@
 			title: $("#single-post-title"),
 			splash: $("#single-splash"),
 			discussionLink: $("#single-discussion"),
+			// Functions
+			setSplashSize:() => {
+				app.singlePost.splash.css({"opacity":1,"height":app.viewport.height - app.singlePost.header.height() - app.page.header.height(),"top":app.singlePost.header.height(),"margin-bottom":app.singlePost.header.height()});
+			},
+			toggleHeader:(bool,callback) => {
+				let toggleChevron = () => {
+					if(app.singlePost.headerOpen){
+						app.singlePost.toggle.html('<i class="fa fa-chevron-down"></i>');
+					}else{
+						app.singlePost.toggle.html('<i class="fa fa-chevron-up"></i>');
+					}
+					app.singlePost.headerOpen = !app.singlePost.headerOpen;
+				}
+				if(bool){
+					// Open Single Post Header
+					app.singlePost.splash.animate({top : app.singlePost.headerHeightConst+"px","margin-bottom" : app.singlePost.headerHeightConst+"px"},250, function(){
+						// Animation Complete
+					});
+				}else{
+					// Close Single Post Header
+					app.singlePost.splash.animate({top : "0px","margin-bottom" : "0px"},250, function(){
+						// Animation Complete
+					});
+				}
+				app.singlePost.headerToggle.slideToggle(250, function(){
+					// Animation Complete
+					toggleChevron();
+					callback();
+				});
+			},
 			// Interactions
 			titleClick:function(){
 				$("html, body").animate({ scrollTop: 0 });
@@ -143,30 +184,13 @@
 				$("html, body").animate({ scrollTop: offset });
 			},
 			toggleClick: () =>{
-				//let app = blogObj,
-				let toggleChevron = () => {
-					if(app.singlePost.headerOpen){
-						app.singlePost.toggle.html('<i class="fa fa-chevron-down"></i>');
-					}else{
-						app.singlePost.toggle.html('<i class="fa fa-chevron-up"></i>');
-					}
-					app.singlePost.headerOpen = !app.singlePost.headerOpen;
-				}
 				if(app.singlePost.headerOpen){
-					// Close Single Post Header
-					app.singlePost.splash.animate({top : "0px","margin-bottom" : "0px"},250, function(){
-						// Animation Complete
-					});
+					// Close Header
+					app.singlePost.toggleHeader(false,function(){console.log('no funciton');});
 				}else{
-					// Open Single Post Header
-					app.singlePost.splash.animate({top : app.singlePost.headerHeightConst+"px","margin-bottom" : app.singlePost.headerHeightConst+"px"},250, function(){
-						// Animation Complete
-					});
+					// Open Header
+					app.singlePost.toggleHeader(true,function(){console.log('no funciton');});
 				}
-				app.singlePost.headerToggle.slideToggle(250, function(){
-					// Animation Complete
-					toggleChevron();
-				});
 			}
 		}
 	};
@@ -176,9 +200,6 @@
 	// Window Resizing
 	$( window ).resize(function() {
 		app.viewport.reset();
-			if ($(window).width() > 767) {
-					header.css("display","none");
-			}
 	});
 	// Window Scrolling
 	window.addEventListener('scroll', function(e) {
@@ -230,7 +251,7 @@
 	}
 	if(app.singlePost.content.length){
 		// Single Post
-		app.singlePost.splash.css({"opacity":1,"height":app.viewport.height - app.singlePost.header.height() - app.page.header.height(),"top":app.singlePost.header.height(),"margin-bottom":app.singlePost.header.height()});
+		app.singlePost.setSplashSize();
 		app.singlePost.splash.animateCss('fadeIn', function() {
   		// Animation Complete
 			app.page.footer.css({"display":"flex"});

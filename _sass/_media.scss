@@ -96,6 +96,15 @@
 		width:calc(98% - 4px);
 	}
 
+	#single-post-header{
+		.post-details{
+			@include flex-column;
+			span{
+				margin:0.2em 0;
+			}
+		}
+	}
+
 }
 
 /*
