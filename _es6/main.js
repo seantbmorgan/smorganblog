@@ -148,14 +148,6 @@
 				app.singlePost.splash.css({"opacity":1,"height":app.viewport.height - app.singlePost.header.height() - app.page.header.height(),"top":app.singlePost.header.height(),"margin-bottom":app.singlePost.header.height()});
 			},
 			toggleHeader:(bool,callback) => {
-				let toggleChevron = () => {
-					if(app.singlePost.headerOpen){
-						app.singlePost.toggle.html("<i class='fa fa-chevron-down'></i>");
-					}else{
-						app.singlePost.toggle.html("<i class='fa fa-chevron-up'></i>");
-					}
-					app.singlePost.headerOpen = !app.singlePost.headerOpen;
-				};
 				if(bool){
 					// Open Single Post Header
 					app.singlePost.splash.animate({top : app.singlePost.headerHeightConst+"px","margin-bottom" : app.singlePost.headerHeightConst+"px"},250, function(){
@@ -168,9 +160,16 @@
 					});
 				}
 				app.singlePost.headerToggle.slideToggle(250, function(){
-					// Animation Complete
-					toggleChevron();
-					callback();
+					// Toggle Chevron
+					if(app.singlePost.headerOpen){
+						app.singlePost.toggle.html("<i class='fa fa-chevron-down'></i>");
+					}else{
+						app.singlePost.toggle.html("<i class='fa fa-chevron-up'></i>");
+					}
+					app.singlePost.headerOpen = !app.singlePost.headerOpen;
+					if(typeof callback === "function"){
+							callback();
+					}
 				});
 			},
 			// Interactions
@@ -194,6 +193,38 @@
 
 					});
 				}
+			}
+		},
+		contact:{
+			request:null,
+			form:$("#contactForm"),
+			error:$("#formError"),
+			prompt:$("#ui-prompt"),
+			visitor:{
+				name:$("#visitorname"),
+				email:$("#visitoremail"),
+				comments:$("#visitorcomment"),
+			},
+			submit:$("#contactSubmit"),
+			loading:$("#email-loading"),
+			validate:()=>{
+				// Name
+				if(app.contact.visitor.name.val() === "" || !app.contact.visitor.name.val().length || app.contact.visitor.name.val() === null){
+					app.contact.error.text( "Please fill out your name." ).show().fadeOut( 2000 );
+					return false;
+				}
+				// Email
+				let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+				if(!emailRegex.test(String(app.contact.visitor.email.val()).toLowerCase())){
+					app.contact.error.text( "Please use a valid email address." ).show().fadeOut( 2000 );
+					return false;
+				}
+				// Comments
+				if(app.contact.visitor.comments.val() === "" || !app.contact.visitor.comments.val().length || app.contact.visitor.comments.val() === null){
+					app.contact.error.text( "Please add some comments." ).show().fadeOut( 2000 );
+					return false;
+				}
+				return true;
 			}
 		}
 	};
@@ -244,6 +275,77 @@
 	// Single Post Header Toggle
 	app.singlePost.toggle.click(function(event) {
 		app.singlePost.toggleClick();
+	});
+	$("#contactSubmit").click(function(event) {
+		const emailFailure = (msg) => {
+			app.contact.error.text( msg ).show().fadeOut( 4000 );
+			grecaptcha.reset();
+		}
+
+		const emailSuccess = (msg) => {
+			app.contact.prompt.text( 'Message delivered, thanks for reaching out!' ).show().fadeOut( 4000 );
+			app.contact.visitor.name.val("");
+			app.contact.visitor.email.val("");
+			app.contact.visitor.comments.val("");
+			grecaptcha.reset();
+		}
+  	if (app.contact.validate()){
+
+			app.contact.form.css({"display":"none"});
+			app.contact.loading.css({"display":"block"});
+
+			if (app.contact.request){
+					app.contact.request.abort();
+			}
+			let inputs = app.contact.form.find("input, textarea"),
+			serializedData = inputs.serialize();
+			let request = $.ajax({
+				url: emailHandler+'/email/contact.php',
+				type: "post",
+				data: serializedData,
+				error: (jqXHR, textStatus, errorThrown) => {
+					// BAD
+				},
+				success: (data, textStatus, jqXHR) => {
+					emailSuccess();
+					app.contact.form.css({"display":"flex"});
+					app.contact.loading.css({"display":"none"});
+
+
+					let serverRspnd = JSON.parse(data);
+					switch(serverRspnd.success){
+						case 1:
+							// Success
+							grecaptcha.reset();
+							break;
+						case 2:
+							// Name Fail
+							emailFailure("Please fill out your name.");
+							break;
+						case 3:
+							// Email Fail
+							emailFailure("Please use a vaild email address.");
+							break;
+						case 4:
+							// Comments Fail
+							emailFailure("Please add some comments.");
+							break;
+						case 5:
+							// Captcha Fail
+							emailFailure("Captcha failed.");
+							break;
+						case 6:
+							// Email Not Sent
+							emailFailure("I'm sorry, the server had troubled delivering your message.");
+							break;
+						case 7:
+							// Google Captcha Fail
+							emailFailure("Captcha failed.");
+							break;
+					}
+				}
+			});
+		}
 	});
 	//***********************************************************************************************
 	// On Load

@@ -20,6 +20,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="<?php bloginfo('description'); ?>">
 
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+
 		<?php wp_head(); ?>
 		<script>
         // conditionizr.com
@@ -69,7 +71,7 @@
 					<div id="navStandard">
 						<a href="javascript:void(0);" class="icon" id="toggle-nav"><i class="fa fa-bars"></i></a>
 						<a href="<?php echo home_url(); ?>">Blog</a>
-						<a href="portfolio">Protfolio</a>
+						<a href="portfolio">Portfolio</a>
 						<a href="resume">Resume</a>
 						<a href="contact">Contact</a>
 						<a href="javascript:void(0);" class="search" id="open-search"><i class="fa fa-search"></i></a>
@@ -77,7 +79,7 @@
 				</div>
 				<div id="navResponsive">
 					<a href="<?php echo home_url(); ?>">Blog</a>
-					<a href="portfolio">Protfolio</a>
+					<a href="portfolio">Portfolio</a>
 					<a href="resume">Resume</a>
 					<a href="contact">Contact</a>
 				</div>

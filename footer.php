@@ -39,5 +39,7 @@
 		echo '<script src="'.get_template_directory_uri().'/js/smorgan.min.js"></script>';
 
 		?>
+
+		<script type="text/javascript">	let emailHandler = "<?php echo get_template_directory_uri(); ?>";</script>
 	</body>
 </html>

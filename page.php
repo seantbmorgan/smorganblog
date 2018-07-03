@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div id="page-header">
+<div id="page-header" class="no-sticky">
 
 	<div id="search-bar">
 		<div class="section"><?php get_template_part('searchform'); ?></div>

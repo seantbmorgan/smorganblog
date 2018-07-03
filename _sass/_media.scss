@@ -206,4 +206,19 @@
 		font-size:1.5em;
 	}
 
+	#page-header{
+		h1{
+			top:0.5em;
+		}
+	}
+
+	.dynamic-row{
+		@include flex-column;
+		@include flex-center;
+		width:100%;
+	}
+	.form-group{
+		margin:25px 1% 15px 1%;
+	}
+
 }
