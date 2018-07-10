@@ -1,4 +1,3 @@
-<div class="header-push"></div>
 <div id="email-loading" class="spinner"></div>
 <form id="contactForm" onsubmit="return false;" name="contactForm">
 

@@ -1,15 +1,17 @@
 <?php get_header(); ?>
 
+<div id="search-bar">
+	<div class="section"><?php get_template_part('searchform'); ?></div>
+	<div id="categories" class="section"><?php wp_list_categories() ?></div>
+</div>
+<!--
 <div id="page-header" class="no-sticky">
 
-	<div id="search-bar">
-		<div class="section"><?php get_template_part('searchform'); ?></div>
-		<div id="categories" class="section"><?php wp_list_categories() ?></div>
-	</div>
 
-	<h1><a> <?php the_title(); ?></a></h1>
-	<?php edit_post_link(); ?>
-</div>
+
+	<h1><a> <?php //the_title(); ?></a></h1>
+	<?php //edit_post_link(); ?>
+</div>-->
 
 	<main role="main" class="wp-page">
 		<!--<construction></construction>-->

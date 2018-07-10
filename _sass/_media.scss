@@ -5,12 +5,12 @@
 
 @media (min-width: 1281px) {
 
-	#caption{
+	#captionText{
 		h1{
-			font-size: 5em;
+			//font-size: 4rem;
 		}
 		h2{
-			font-size:2em;
+			//font-size:1.5rem;
 		}
 	}
 
@@ -33,6 +33,12 @@
 		}
 	}
 
+	#captionText{
+		h2{
+			//letter-spacing:0.75rem
+		}
+	}
+
 }
 
 /*
@@ -49,6 +55,12 @@
 				font-size: 5em;
 				top:-0.25em;
 			}
+		}
+	}
+
+	#captionText{
+		h2{
+			//letter-spacing:0.75rem
 		}
 	}
 
@@ -82,16 +94,19 @@
 		}
 	}
 
-	#caption{
+	#captionText{
 		h1{
-			font-size:3em;
-			text-shadow: black 0.05em 0.05em 0.1em;
+		font-size:1.5rem;
+			//text-shadow: black 0.05em 0.05em 0.1em;
+			line-height:1.5em;
 		}
 		h2{
-			font-size:1.25em;
-			text-shadow: black 0.05em 0.05em 0.1em;
+			font-size:0.75em;
+			//text-shadow: black 0.05em 0.05em 0.1em;
+			letter-spacing:0.25em;
 		}
 	}
+
 
 	// Navigation
 	#navStandard {
@@ -161,14 +176,16 @@
 		left: -90%;
 	}
 
-	#caption{
+	#captionText{
 		h1{
-			font-size:2.25em;
-			text-shadow: black 0.05em 0.05em 0.1em;
+		font-size:1.5em;
+		line-height:1.5em;
+			//text-shadow: black 0.05em 0.05em 0.1em;
 		}
 		h2{
-			font-size:1.25em;
-			text-shadow: black 0.05em 0.05em 0.1em;
+			font-size:0.75em;
+			//text-shadow: black 0.05em 0.05em 0.1em;
+			letter-spacing:0.25em;
 		}
 	}
 

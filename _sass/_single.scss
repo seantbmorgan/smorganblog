@@ -1,3 +1,7 @@
+.header-push{
+	width:100%;
+	height:100px;
+}
 main.single{
 	article.single{
 		width:100%;
@@ -19,6 +23,7 @@ main.single{
 		font-family: $marker;
 		margin:0.25em 0;
 		a{
+			transition:$smoothTrans;
 			color:white;
 			text-decoration: none;
 		}
@@ -37,6 +42,7 @@ main.single{
 			@include flex-push;
 			color:white;
 			a{
+				transition:$smoothTrans;
 				color:white;
 				text-decoration: none;
 			}
@@ -91,6 +97,7 @@ main.single{
 	background:rgba(0,0,0,0.75);
 }
 #toggle-header{
+	transition:$smoothTrans;
 	text-decoration: none;
 	display:block;
 	width:100%;
@@ -98,5 +105,5 @@ main.single{
 	text-align:center;
 	color:white;
 	padding:1em 0;
-	background:rgba(0,0,0,0.5);
+	background:rgba(0,0,0,0.25);
 }

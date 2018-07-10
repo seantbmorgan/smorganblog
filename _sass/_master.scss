@@ -16,6 +16,8 @@ $base-font-size:18px;
 
 $padding-one:4%;
 $padding-two:2%;
+
+$smoothTrans:all ease 0.3s;
 //==============================================================================
 // Mixins
 //==============================================================================
@@ -53,7 +55,6 @@ $padding-two:2%;
 }
 .row{
 	@include flex-row;
-	@include flex-center;
 	width:100%;
 }
 .dynamic-row{
@@ -61,6 +62,22 @@ $padding-two:2%;
 	@include flex-center;
 	width:100%;
 }
+.smoothTrans{
+	transition:$smoothTrans;
+}
+
+
+
+.right{
+	float:right;
+}
+.left{
+	float:left;
+}
+.clear{
+	clear:both;
+}
+
 
 #loading{
 	@include flex-column;
@@ -261,6 +278,9 @@ header{
 		text-decoration: none;
 		color:black;
 	}
+	a:hover{
+		color:$theme-accent;
+	}
 }
 #splash{
 	@include flex-column;
@@ -338,21 +358,30 @@ video {
 	width:100%;
 	height:100%;
 	z-index:30;
+}
+#captionText{
+	width:100%;
+	padding:2rem;
+	background:(rgba(255,255,255,0.5));
 	h1,h2{
-		color:#FFF;
-		margin:0;
+		color:black;
+		margin:3rem;
 		//font-family: $marker;
-		text-shadow: black 0.04em 0.04em 0.1em;
+		//text-shadow: black 0.04em 0.04em 0.1em;
 		z-index: 3;
 		text-align: center;
 		animation-fill-mode: forwards;
 	}
 	h1{
 		font-family: $marker;
-		font-size: 4em;
+		font-size:2em;
+		letter-spacing: 0.25em;
+		line-height: 3em;
 	}
 	h2{
-		font-size:1.5em;
+		font-size:0.8em;
+		letter-spacing: 1em;
+		line-height: 2em;
 	}
 }
 
@@ -362,8 +391,9 @@ video {
 	background: $theme-medium;
 	padding:0.5em 0;
 	width:100%;
-	z-index:10;
+	z-index:15;
 	display:none;
+	position: fixed;
 	.section{
 		@include flex-row;
 		@include flex-center;
@@ -374,15 +404,27 @@ video {
 		li.categories{
 			list-style: none;
 			font-size:1.25em;
+			ul::before{
+				content:"";
+				display:block;
+				width:100%;
+				height:1px;
+				background:#1d1d1d;
+			}
 			ul{
+				margin:0.5em;
 				list-style: none;
+				border-top:1px solid #2f2f2f;
 				li{
-
 					display:inline;
 					a{
+						transition: $smoothTrans;
 						font-size:0.75em;
 						text-decoration: none;
 						color:#999;
+					}
+					a:hover{
+						color:$theme-accent;
 					}
 				}
 			}
@@ -455,20 +497,22 @@ video {
 // Time Fo' Wordpress
 //==============================================================================
 #skip-splash{
+	transition:$smoothTrans;
 	width:100%;
 	padding:0.5em 0;
-	background:rgba(0,0,0,0.5);
+	background:rgba(255,255,255,0.75);
 	position: absolute;
 	bottom:0;
 	left:0;
 	margin:0 auto;
 	font-size:1em;
-	color:white;
+	color:$theme-medium;
 	text-align: center;
+	border-top:white 2px solid;
 }
 #skip-splash:hover{
-	color:$theme-accent;
-	background:rgba(0,0,0,0.75);
+	color:$theme-dark;
+	background:rgba(255,255,255,0.95);
 }
 .fill{
 	position: relative;
@@ -491,7 +535,7 @@ article.loop{
 	background:white;
 	// Thumbnail
 	.post-thumb,.post-no-thumb{
-		width:100%;
+		//width:100%;
 		@include flex-column;
 		@include flex-center;
 		height:200px;
@@ -533,6 +577,10 @@ article.loop{
 			text-decoration: none;
 		}
 	}
+	.comments:hover,.edit:hover,.post-link:hover{
+			background:$theme-accent;
+
+	}
 	.post-link{
 		right:1em;
 	}
@@ -547,6 +595,7 @@ article.loop{
 		a{
 			color:black;
 			text-decoration: none;
+			line-height:1.75em;
 			//font-size: 1.5em;
 			font-weight: bold;
 			z-index: 3;
@@ -592,27 +641,35 @@ article.loop{
 			margin:1em 0;
 			border-top:1px solid $theme-light;
 			border-bottom:1px solid $theme-light;
+			line-height:1.75em;
 		}
 		h2{
-			margin:0 0.5em;
+			margin:0;
 		}
 	}
 }
-
-.post-header:hover{
+.post-header{
 	.post-thumb::after{
-		content:'Continue Reading...';
+		transition:$smoothTrans;
+		content:'';
+		display:block;
 		font-family: $marker;
 		font-size:2em;
 		line-height: 200px;
 		text-align:center;
-		color:rgba(255,255,255,255.25);
+		color:black;
 		overflow:hidden;
-		display:inline-block;
 		width:100%;
 		height:100%;
 		z-index:5;
-		background:rgba(0,0,0,0.5);
+		background:rgba(255,255,255,0);
+	}
+}
+.post-header:hover{
+	.post-thumb::after{
+		content:'Continue Reading...';
+		background:rgba(255,255,255,0.55);
+		display:block;
 		cursor: pointer;
 		cursor: hand;
 	}
@@ -631,12 +688,12 @@ h1,h2,h3{
 	//margin:0.5em 0;
 }
 h1{
-	font-size:2.5em;
-	margin:0.75em 0;
+	font-size:2.5rem;
+	margin:0.75rem 0;
 }
 h2{
-	font-size:2em;
-	margin:0.75em 0;
+	font-size:2rem;
+	margin:0.75rem 0;
 }
 h3{
 	font-size:1.5em;

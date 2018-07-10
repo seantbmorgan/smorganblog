@@ -1,0 +1,82 @@
+#resume{
+	width:80%;
+	margin:0 auto;
+	padding:2em 0;
+	.nav{
+		text-align: center;
+		margin-bottom:2em;
+	}
+	.quick-link{
+		transition: all 0.3s ease;
+		background: $theme-medium;
+		color:white;
+		display: inline-block;
+		margin:0.5em 1em;
+		border-radius:2em;
+		padding:0.5em;
+		text-decoration: none;
+		&:hover{
+			background: $theme-accent;
+			text-decoration: none;
+			cursor: pointer;
+			cursor: hand;
+		}
+	}
+	.top-link{
+		display: flex;
+		text-decoration: none;
+		transition: all 0.3s ease;
+		height:100%;
+		&:hover{
+			color: $theme-accent;
+			text-decoration: none;
+			cursor: pointer;
+			cursor: hand;
+		}
+		i{
+			margin-left:0.25em;
+		}
+	}
+	.section{
+		padding:0.25em 0;
+		margin-top:1.5em;
+		.bold{
+			font-weight: bold;
+		}
+		h1{
+			text-align: center;
+		}
+		h1{
+			font-weight:normal;
+			margin:0.25em 0;
+		}
+		h2{
+			display: inline-block;
+		}
+		line-height: 1.75em;
+	}
+	#resume-head,#executive-summary{
+		text-align: center;
+	}
+	#executive-summary{
+		font-size:1.25em;
+	}
+	.company, .project{
+		font-weight:bold;
+		font-size:1.25em;
+		margin:0.5em 0;
+	}
+	#education{
+		text-align: center;
+		.header-line{
+			font-size:1.25em;
+		}
+	}
+	.title{
+		font-weight:bold;
+	}
+	.title2{
+		font-weight: normal;
+		font-style: italic;
+	}
+}

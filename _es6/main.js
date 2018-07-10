@@ -33,19 +33,75 @@
 	 // Blog Object
 	 //***********************************************************************************************
 	 let app = {
+		 // Credit David Walsh (https://davidwalsh.name/javascript-debounce-function)
+
+		 // Returns a function, that, as long as it continues to be invoked, will not
+		 // be triggered. The function will be called after it stops being called for
+		 // N milliseconds. If `immediate` is passed, trigger the function on the
+		 // leading edge, instead of the trailing.
+		 debounce:function (func, wait, immediate) {
+		   var timeout;
+
+		   // This is the function that is actually executed when
+		   // the DOM event is triggered.
+		   return function executedFunction() {
+		     // Store the context of this and any
+		     // parameters passed to executedFunction
+		     var context = this;
+		     var args = arguments;
+
+		     // The function to be called after
+		     // the debounce time has elapsed
+		     var later = function() {
+		       // null timeout to indicate the debounce ended
+		       timeout = null;
+
+		       // Call function now if you did not on the leading end
+		       if (!immediate) func.apply(context, args);
+		     };
+		     // Determine if you should call the function
+		     // on the leading or trail end
+		     var callNow = immediate && !timeout;
+
+		     // This will reset the waiting every function execution.
+		     // This is the step that prevents the function from
+		     // being executed because it will never reach the
+		     // inside of the previous setTimeout
+		     clearTimeout(timeout);
+
+		     // Restart the debounce waiting period.
+		     // setTimeout returns a truthy value (it differs in web vs node)
+		     timeout = setTimeout(later, wait);
+
+		     // Call immediately if you're dong a leading
+		     // end execution
+		     if (callNow) func.apply(context, args);
+		   };
+		 },
+		scroll:{
+			current:0,
+			direction:null,
+			timeout:null
+		},
 		viewport:{
 			width:Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
 			height:Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
+			resetTimeout:null,
 			reset:()=>{
 				app.viewport.width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 				app.viewport.height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 				if(!app.singlePost.headerOpen){
-					app.singlePost.toggleHeader(true,function(){
-						// Reset Constant
-						app.singlePost.headerHeightConst = $("#single-post-header").height();
-						// Adjust Splash Size
-						app.singlePost.setSplashSize();
-					});
+					if(app.viewport.resetTimeout!==null){
+						clearTimeout(app.viewport.resetTimeout);
+					}
+					app.viewport.resetTimeout = setTimeout(function(){
+						app.singlePost.toggleHeader(true,function(){
+							// Reset Constant
+							app.singlePost.headerHeightConst = $("#single-post-header").height();
+							// Adjust Splash Size
+							app.singlePost.setSplashSize();
+						});
+					},250);
 				}else{
 					app.singlePost.headerHeightConst = $("#single-post-header").height();
 					app.singlePost.setSplashSize();
@@ -53,29 +109,107 @@
 			}
 		},
 		checkScroll:() => {
-			if(app.page.content.length) {
-				// Currently Main Page
-				let scrollLimit = app.page.splash.height(),
-				padding = $(window).height()*0.02;
-				if(window.pageYOffset>=scrollLimit && app.page.searchOpen){
-					app.page.search.css("position","fixed");
-					app.page.search.css("top","100px");
-					app.page.content.css("top",app.page.search.height()+padding);
+				// Header Scroll
+				const pageHeaderControl = function(){};
+				// End Header Scroll
+
+				if(app.page.content.length) {
+					// Currently Main Page
+					let scrollLimit = app.viewport.height;
+					if(window.pageYOffset>app.scroll.current){
+						// Scrolling Down
+						if(app.scroll.direction !== "down" && window.pageYOffset>app.viewport.height-app.page.header.height()){
+							app.scroll.direction = "down";
+							app.page.header.animate({
+								top:"-100px"
+							},250, function() {
+		    				// Animation complete.
+		  				});
+							app.page.search.animate({
+									top:"0px"
+							},250, function() {
+								// Animation complete.
+							});
+						}
+					}else{
+						// Scrolling Up
+						if(app.scroll.direction !== "up"){
+							app.scroll.direction = "up";
+							app.page.header.animate({
+								top:"0px"
+							},250, function() {
+		    				// Animation complete.
+					  	});
+							app.page.search.animate({
+								top:"100px"
+							},250, function() {
+										// Animation complete.
+							});
+						}
+					}
 				}
-				else if(window.pageYOffset<scrollLimit && app.page.searchOpen){
-					app.page.search.css("position","relative");
-					app.page.search.css("top","0");
-					app.page.content.css("top","0");
+				if(app.singlePost.content.length){
+					// Single Post
+					if(window.pageYOffset>app.scroll.current-50){
+						// Scrolling Down
+						if(app.scroll.direction !== "down" && window.pageYOffset>app.viewport.height-app.page.header.height()-app.singlePost.headerHeightConst){
+
+							//console.log(app.viewport.height-app.page.header.height(),app.singlePost.header.height());
+							app.scroll.direction = "down";
+							app.page.header.animate({
+								top:"-100px"
+							},250, function() {
+		    				// Animation complete.
+		  				});
+							app.page.search.animate({
+									top:"0px"
+							},250, function() {
+								// Animation complete.
+							});
+							app.singlePost.header.animate({
+									top:"0px"
+							},250, function() {
+								// Animation complete.
+							});
+						}
+						// Resent Current Scroll Position
+						app.scroll.current = window.pageYOffset;
+					}else if(window.pageYOffset<app.scroll.current-25){
+						if(app.scroll.timeout!==null){
+							clearTimeout(app.scroll.timeout);
+						}
+						app.scroll.timeout = setTimeout(function(){
+
+						// Scrolling Up
+						if(app.scroll.direction !== "up"){
+							app.scroll.direction = "up";
+							app.page.header.animate({
+								top:"0px"
+							},250, function() {
+		    				// Animation complete.
+					  	});
+							app.page.search.animate({
+								top:"100px"
+							},250, function() {
+										// Animation complete.
+							});
+							app.singlePost.header.animate({
+									top:"100px"
+							},250, function() {
+								// Animation complete.
+							});
+						}
+						// Resent Current Scroll Position
+						app.scroll.current = window.pageYOffset;
+					},250);
+					}
+					let scrollLimit = app.viewport.height-app.page.header.height()-app.singlePost.header.height();
+					if(window.pageYOffset>scrollLimit&&app.singlePost.headerOpen&&app.singlePost.headerAutoHide){
+						app.singlePost.headerAutoHide=false;
+							app.singlePost.toggleClick();
+					}
 				}
-			}
-			if(app.singlePost.content.length){
-				// Single Post
-				let scrollLimit = app.singlePost.splash.height();
-				if(window.pageYOffset>scrollLimit&&app.singlePost.headerOpen&&app.singlePost.headerAutoHide){
-					app.singlePost.headerAutoHide=false;
-						app.singlePost.toggleClick();
-				}
-			}
+
 		},
 		toggleElement:(item) => {
 			let htmlEl = null;
@@ -85,6 +219,9 @@
 					break;
 				case "categories":
 					htmlEl = app.page.categories;
+					break;
+				case "header":
+					htmlEl = app.page.header;
 					break;
 			}
 			htmlEl.slideToggle(250, function() {
@@ -117,6 +254,7 @@
 		page:{
 			loading:$("#loading"),
 			header:$("header"),
+			headerHeight:$("header").height(),
 			responsiveNav:$("#navResponsive"),
 			splash:$("#splash"),
 			splashSkip:$("#skip-splash"),
@@ -135,7 +273,7 @@
 		singlePost:{
 			content:$("#single-post"),
 			header: $("#single-post-header"),
-			headerHeightConst: $("#single-post-header").height(),
+			headerHeightConst:0,
 			headerToggle: $("#single-post-header .toggle"),
 			headerOpen: true,
 			headerAutoHide: true,
@@ -226,6 +364,13 @@
 				}
 				return true;
 			}
+		},
+		resume:{
+			quicklinks:$(".quick-link, .top-link"),
+			quicknav:(tgt)=>{
+				let offset = $("#"+tgt).offset().top - app.page.header.height();
+				$("html, body").animate({ scrollTop: offset });
+			}
 		}
 	};
 	//***********************************************************************************************
@@ -280,15 +425,15 @@
 		const emailFailure = (msg) => {
 			app.contact.error.text( msg ).show().fadeOut( 4000 );
 			grecaptcha.reset();
-		}
+		};
 
 		const emailSuccess = (msg) => {
-			app.contact.prompt.text( 'Message delivered, thanks for reaching out!' ).show().fadeOut( 4000 );
+			app.contact.prompt.text( "Message delivered, thanks for reaching out!" ).show().fadeOut( 4000 );
 			app.contact.visitor.name.val("");
 			app.contact.visitor.email.val("");
 			app.contact.visitor.comments.val("");
 			grecaptcha.reset();
-		}
+		};
   	if (app.contact.validate()){
 
 			app.contact.form.css({"display":"none"});
@@ -300,7 +445,7 @@
 			let inputs = app.contact.form.find("input, textarea"),
 			serializedData = inputs.serialize();
 			let request = $.ajax({
-				url: emailHandler+'/email/contact.php',
+				url: emailHandler+"/email/contact.php",
 				type: "post",
 				data: serializedData,
 				error: (jqXHR, textStatus, errorThrown) => {
@@ -347,12 +492,25 @@
 			});
 		}
 	});
+	app.resume.quicklinks.click(function(event){
+		let tgt = $(this).data("tgt");
+		app.resume.quicknav(tgt);
+	});
 	//***********************************************************************************************
 	// On Load
 	//***********************************************************************************************
 	if(app.page.content.length){
 		// Main Page (Index)
 		app.page.footer.css({"display":"flex"});
+		$("#blog-link").attr("href","javascript:void(0);");
+		$("#blog-link").click(function(event){
+			let offset = app.page.content.offset().top-100;
+			$("html, body").animate({ scrollTop: offset });
+		})
+		$("#home-link").attr("href","javascript:void(0);");
+		$("#home-link").click(function(event){
+			$("html, body").animate({ scrollTop: 0 });
+		})
 	}
 	else if(app.singlePost.content.length){
 		// Single Post
@@ -361,6 +519,7 @@
   		// Animation Complete
 			app.page.footer.css({"display":"flex"});
 		});
+		app.singlePost.headerHeightConst = $("#single-post-header").height();
 	}else{
 		// Further Page Work Here
 		app.page.footer.css({"display":"flex"});

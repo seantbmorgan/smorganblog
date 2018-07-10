@@ -63,25 +63,25 @@
 				<div class="nickname-spill-control"><div class="nickname">THE DENTIST</div></div>
 				<div class="row">
 					<div class="logo">
-						<a href="<?php echo home_url(); ?>">
+						<a id="home-link" href="<?php echo home_url(); ?>">
 							<img src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Sean Tanue-Bongwa Logo" title="Sean Tanue-Bongwa Logo"/>
 						</a>
 					</div>
 					<span class="flex-push"></span>
 					<div id="navStandard">
-						<a href="javascript:void(0);" class="icon" id="toggle-nav"><i class="fa fa-bars"></i></a>
-						<a href="<?php echo home_url(); ?>">Blog</a>
-						<a href="portfolio">Portfolio</a>
-						<a href="resume">Resume</a>
-						<a href="contact">Contact</a>
-						<a href="javascript:void(0);" class="search" id="open-search"><i class="fa fa-search"></i></a>
+						<a href="javascript:void(0);" class="icon smoothTrans" id="toggle-nav"><i class="fa fa-bars"></i></a>
+						<a id="blog-link" class="smoothTrans" href="<?php echo home_url(); ?>">Blog</a>
+						<a href="portfolio" class="smoothTrans">Portfolio</a>
+						<a href="resume" class="smoothTrans">Resume</a>
+						<a href="contact" class="smoothTrans">Contact</a>
+						<a href="javascript:void(0);" class="search smoothTrans" id="open-search"><i class="fa fa-search"></i></a>
 					</div>
 				</div>
 				<div id="navResponsive">
-					<a href="<?php echo home_url(); ?>">Blog</a>
-					<a href="portfolio">Portfolio</a>
-					<a href="resume">Resume</a>
-					<a href="contact">Contact</a>
+					<a href="<?php echo home_url(); ?>" class="smoothTrans">Blog</a>
+					<a href="portfolio" class="smoothTrans">Portfolio</a>
+					<a href="resume" class="smoothTrans">Resume</a>
+					<a href="contact" class="smoothTrans">Contact</a>
 				</div>
 			</header>
 
