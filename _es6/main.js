@@ -112,7 +112,6 @@
 				// Header Scroll
 				const pageHeaderControl = function(){};
 				// End Header Scroll
-
 				if(app.page.content.length) {
 					// Currently Main Page
 					let scrollLimit = app.viewport.height;
@@ -131,21 +130,34 @@
 								// Animation complete.
 							});
 						}
-					}else{
-						// Scrolling Up
-						if(app.scroll.direction !== "up"){
-							app.scroll.direction = "up";
-							app.page.header.animate({
-								top:"0px"
-							},250, function() {
-		    				// Animation complete.
-					  	});
-							app.page.search.animate({
-								top:"100px"
-							},250, function() {
-										// Animation complete.
-							});
+						// Resent Current Scroll Position
+						app.scroll.current = window.pageYOffset;
+					}else if(window.pageYOffset<app.scroll.current-25){
+						if(app.scroll.timeout!==null){
+							clearTimeout(app.scroll.timeout);
 						}
+						function showHeader(){
+							// Scrolling Up
+							if(app.scroll.direction !== "up"){
+								app.scroll.direction = "up";
+								app.page.header.animate({
+									top:"0px"
+								},250, function() {
+			    				// Animation complete.
+						  	});
+								app.page.search.animate({
+									top:"100px"
+								},250, function() {
+											// Animation complete.
+								});
+								// Resent Current Scroll Position
+								app.scroll.current = window.pageYOffset;
+							}
+						}
+						if(window.pageYOffset>600)
+							app.scroll.timeout = setTimeout(function(){showHeader()},250);
+						else
+							showHeader();
 					}
 				}
 				if(app.singlePost.content.length){
@@ -178,30 +190,33 @@
 						if(app.scroll.timeout!==null){
 							clearTimeout(app.scroll.timeout);
 						}
-						app.scroll.timeout = setTimeout(function(){
-
-						// Scrolling Up
-						if(app.scroll.direction !== "up"){
-							app.scroll.direction = "up";
-							app.page.header.animate({
-								top:"0px"
-							},250, function() {
-		    				// Animation complete.
-					  	});
-							app.page.search.animate({
-								top:"100px"
-							},250, function() {
-										// Animation complete.
-							});
-							app.singlePost.header.animate({
-									top:"100px"
-							},250, function() {
-								// Animation complete.
-							});
+						function showHeader2(){
+							// Scrolling Up
+								if(app.scroll.direction !== "up"){
+									app.scroll.direction = "up";
+									app.page.header.animate({
+									top:"0px"
+								},250, function() {
+									// Animation complete.
+								});
+														app.page.search.animate({
+															top:"100px"
+														},250, function() {
+																	// Animation complete.
+														});
+														app.singlePost.header.animate({
+																top:"100px"
+														},250, function() {
+															// Animation complete.
+														});
+													}
+													// Resent Current Scroll Position
+													app.scroll.current = window.pageYOffset;
 						}
-						// Resent Current Scroll Position
-						app.scroll.current = window.pageYOffset;
-					},250);
+						if(window.pageYOffset>600)
+							app.scroll.timeout = setTimeout(function(){showHeader2()},250);
+						else
+							showHeader2();
 					}
 					let scrollLimit = app.viewport.height-app.page.header.height()-app.singlePost.header.height();
 					if(window.pageYOffset>scrollLimit&&app.singlePost.headerOpen&&app.singlePost.headerAutoHide){
