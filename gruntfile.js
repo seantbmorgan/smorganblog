@@ -9,6 +9,16 @@ module.exports = function(grunt) {
 			target: ['_es6/main.js']
 		},
 
+		mochaTest: {
+		  test: {
+		    options: {
+		      reporter: 'spec',
+		      require: 'babel-register'
+		    },
+		    src: ['_es6/**/*.js']
+		  }
+		},
+
 		babel: {
 				options: {
 						sourceMap: true,
@@ -108,7 +118,7 @@ module.exports = function(grunt) {
 		watch: {
 			scripts: {
 					files : ['_es6/*.js'],
-					tasks: ['babel','uglify', 'clean'],
+					tasks: ['eslint','babel','uglify', 'clean'],
 					options: {
 						livereload: true
 					}
@@ -136,6 +146,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-mocha-test');
 
   //grunt.registerTask('prod', ['compass:dev', 'jshint', 'concat']);
   //grunt.registerTask('default', ['babel', 'uglify', 'compass:dev', 'copy', 'postcss', 'cssmin', 'clean', 'watch']);
