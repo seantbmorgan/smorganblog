@@ -16,6 +16,7 @@ $base-font-size:18px;
 
 $padding-one:4%;
 $padding-two:2%;
+$padding-three:10%;
 
 $smoothTrans:all ease 0.3s;
 //==============================================================================
@@ -138,7 +139,7 @@ main{
 	@include flex-row;
 	background: white url('img/sayagata-400px.png') repeat;
   flex-grow:1;
-	padding:$padding-two;
+	padding:$padding-two $padding-three;
 	margin-bottom: 200px;
 	z-index: 2;
 }

@@ -65,8 +65,6 @@
 			}
 		},
 		checkScroll:() => {
-				// Header Scroll
-				const pageHeaderControl = function(){};
 				// End Header Scroll
 				if(app.page.content.length) {
 					// Currently Main Page
@@ -118,7 +116,7 @@
 				}
 				if(app.singlePost.content.length){
 					// Single Post
-					if(window.pageYOffset>app.scroll.current-50){
+					if(window.pageYOffset>app.scroll.current){
 						// Scrolling Down
 						if(app.scroll.direction !== "down" && window.pageYOffset>app.viewport.height-app.page.header.height()-app.singlePost.headerHeightConst){
 
@@ -142,7 +140,7 @@
 						}
 						// Resent Current Scroll Position
 						app.scroll.current = window.pageYOffset;
-					}else if(window.pageYOffset<app.scroll.current-25){
+					}else if(window.pageYOffset<app.scroll.current-10){
 						if(app.scroll.timeout!==null){
 							clearTimeout(app.scroll.timeout);
 						}
