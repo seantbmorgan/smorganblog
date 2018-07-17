@@ -98,7 +98,7 @@ $smoothTrans:all ease 0.3s;
 	}
 	.lds-ripple div {
 	  position: absolute;
-	  border: 4px solid $theme-medium;
+	  border: 2px solid $theme-medium;
 	  opacity: 1;
 	  border-radius: 50%;
 	  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
@@ -142,6 +142,35 @@ main{
 	padding:$padding-two $padding-three;
 	margin-bottom: 200px;
 	z-index: 2;
+	font-size: 16px;
+}
+#social{
+	//width:10em;
+	padding:2em;
+	//height:auto;
+	position: absolute;
+	top:100vh;
+	z-index:10;
+	@include flex-column;
+	@include flex-center;
+	a{
+		transition: $smoothTrans;
+		display:block;
+		font-size: 1em;
+		padding:1em;
+		border-radius: 50%;
+		background: $theme-medium;
+		color:white;
+		height:1em;
+		width:1em;
+		text-align: center;
+	}
+	a:not(:first-child){
+		margin-top:1em;
+	}
+	a:hover{
+		background: $theme-accent;
+	}
 }
 /*
 main{
@@ -183,11 +212,13 @@ footer{
 	position: fixed;
 	bottom:0;
 	height:200px;
-	width:100%;
+	width:80%;
 	background: black url('img/pw_maze_black.png') repeat;
 	z-index:1;
 	color:white;
 	display:none;
+	text-align: center;
+	padding:0 10%;
 	a,a:visited{
 		color:white;
 	}
@@ -287,8 +318,9 @@ header{
 	@include flex-column;
 	@include flex-center;
 	width:100%;
-	//background: black url('img/poster.png');
+	background: white;
 	overflow: hidden;
+	z-index:50;
 	.fill-image{
 		@include flex-column;
 		@include flex-center;
@@ -548,6 +580,7 @@ article.loop{
 	}
 	// Post Comments
 	.post-edit-link{
+			transition: $smoothTrans;
 			display:block;
 			position:absolute;
 			bottom:-1em;
@@ -561,6 +594,9 @@ article.loop{
 			width:1em;
 			text-align: center;
 			z-index:10;
+	}
+	.post-edit-link:hover{
+		background: $theme-accent;
 	}
 	.comments,.edit,.post-link{
 		position: absolute;

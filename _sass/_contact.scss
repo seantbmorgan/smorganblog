@@ -38,10 +38,19 @@ form#contactForm{
     width: 100%;
 		background:none;
 		border:0;
-		border-bottom:2px solid $theme-medium;
+		border-bottom:2px solid $theme-light;
 		outline:none;
 		text-align: center;
     &:focus {
+      outline: none;
+      //border-color: #2d8cf0;
+			border-bottom:2px solid $theme-accent;
+
+      +label {
+        color: $theme-accent;
+      }
+    }
+		&:hover {
       outline: none;
       //border-color: #2d8cf0;
 			border-bottom:2px solid $theme-accent;
@@ -81,7 +90,26 @@ input:-webkit-autofill {
 	color:red;
 	margin: 1em 0;
 }
-
+input::-webkit-input-placeholder,textarea::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: $theme-medium;
+	font-size:0.8em;
+	font-family: $typeface;
+}
+input::-moz-placeholder,textarea::-moz-placeholder { /* Firefox 19+ */
+  color: $theme-medium;
+	font-size:0.8em;
+	font-family: $typeface;
+}
+input:-ms-input-placeholder,textarea:-ms-input-placeholder { /* IE 10+ */
+  color: $theme-medium;
+	font-size:0.8em;
+	font-family: $typeface;
+}
+input:-moz-placeholder,textarea:-moz-placeholder { /* Firefox 18- */
+  color: $theme-medium;
+	font-size:0.8em;
+	font-family: $typeface;
+}
 
 .spinner {
   width: 50px;

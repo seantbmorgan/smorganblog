@@ -60,6 +60,7 @@ main.single{
 	}
 	// Edit
 	.post-edit-link{
+		transition: $smoothTrans;
 		display:block;
 		position:absolute;
 		bottom:-2.25em;
@@ -73,6 +74,9 @@ main.single{
 		width:1em;
 		text-align: center;
 		z-index: 2;
+	}
+	.post-edit-link:hover{
+		background: $theme-accent;
 	}
 }
 // Splash
@@ -106,4 +110,17 @@ main.single{
 	color:white;
 	padding:1em 0;
 	background:rgba(0,0,0,0.25);
+}
+#single-post{
+	a.highlighted{
+		transition: $smoothTrans;
+		background: $theme-light;
+		//color:white;
+		color:black;
+		padding:0.25em 0.5em;
+	}
+	a.highlighted:hover{
+		background: $theme-medium;
+		color:$theme-accent;
+	}
 }

@@ -43,7 +43,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 #loading { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; height: 100%; position: fixed; top: 0; left: 0; background: white; z-index: 2000; }
 #loading .lds-ripple { display: inline-block; position: relative; width: 64px; height: 64px; }
-#loading .lds-ripple div { position: absolute; border: 4px solid #282828; opacity: 1; border-radius: 50%; -webkit-animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite; animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite; }
+#loading .lds-ripple div { position: absolute; border: 2px solid #282828; opacity: 1; border-radius: 50%; -webkit-animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite; animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite; }
 #loading .lds-ripple div:nth-child(2) { -webkit-animation-delay: -0.5s; animation-delay: -0.5s; }
 @-webkit-keyframes lds-ripple { 0% { top: 28px; left: 28px; width: 0; height: 0; opacity: 1; }
   100% { top: -1px; left: -1px; width: 58px; height: 58px; opacity: 0; } }
@@ -55,7 +55,12 @@ body { padding-top: 100px; }
 
 .site { display: flex; flex-direction: column; font-family: "Montserrat", sans-serif; font-size: 18px; }
 
-main { position: relative; display: flex; flex-direction: row; background: white url("img/sayagata-400px.png") repeat; flex-grow: 1; padding: 2% 10%; margin-bottom: 200px; z-index: 2; }
+main { position: relative; display: flex; flex-direction: row; background: white url("img/sayagata-400px.png") repeat; flex-grow: 1; padding: 2% 10%; margin-bottom: 200px; z-index: 2; font-size: 16px; }
+
+#social { padding: 2em; position: absolute; top: 100vh; z-index: 10; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+#social a { transition: all ease 0.3s; display: block; font-size: 1em; padding: 1em; border-radius: 50%; background: #282828; color: white; height: 1em; width: 1em; text-align: center; }
+#social a:not(:first-child) { margin-top: 1em; }
+#social a:hover { background: #1a98da; }
 
 /*
 main{
@@ -74,7 +79,7 @@ aside { position: relative; width: 20%; padding: 0 2% 0 0; }
 aside form.search { width: 100%; display: flex; flex-direction: row; }
 aside form.search input[type=search] { display: inline-flex; flex-grow: 1; margin: 0 1em; line-height: 2em; padding: 0.5em; border-radius: 2em; background: #282828; color: white; border: none; outline: none; }
 
-footer { display: flex; flex-direction: row; justify-content: center; align-items: center; position: fixed; bottom: 0; height: 200px; width: 100%; background: black url("img/pw_maze_black.png") repeat; z-index: 1; color: white; display: none; }
+footer { display: flex; flex-direction: row; justify-content: center; align-items: center; position: fixed; bottom: 0; height: 200px; width: 80%; background: black url("img/pw_maze_black.png") repeat; z-index: 1; color: white; display: none; text-align: center; padding: 0 10%; }
 footer a, footer a:visited { color: white; }
 footer a:hover { color: #1a98da; }
 
@@ -94,7 +99,7 @@ header .logo img { width: 100%; }
 #navResponsive a { display: block; padding: 10px; text-align: center; background: white; text-decoration: none; color: black; }
 #navResponsive a:hover { color: #1a98da; }
 
-#splash { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; overflow: hidden; }
+#splash { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; background: white; overflow: hidden; z-index: 50; }
 #splash .fill-image { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 900px; height: 300px; /*
 .initials{
 	position: absolute;
@@ -154,7 +159,8 @@ section { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: 
 article.loop { width: calc(48% - 4px); margin: 0 0 2em 2%; border: solid 1px #DDDDDD; background: white; }
 article.loop .post-thumb, article.loop .post-no-thumb { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 200px; background-position: center; background-size: cover; }
 article.loop .post-thumb img, article.loop .post-no-thumb img { width: 100%; }
-article.loop .post-edit-link { display: block; position: absolute; bottom: -1em; right: 1em; font-size: 1em; padding: 1em; border-radius: 50%; background: #282828; color: white; height: 1em; width: 1em; text-align: center; z-index: 10; }
+article.loop .post-edit-link { transition: all ease 0.3s; display: block; position: absolute; bottom: -1em; right: 1em; font-size: 1em; padding: 1em; border-radius: 50%; background: #282828; color: white; height: 1em; width: 1em; text-align: center; z-index: 10; }
+article.loop .post-edit-link:hover { background: #1a98da; }
 article.loop .comments, article.loop .edit, article.loop .post-link { position: absolute; display: inline-block; line-height: 2em; font-size: 1em; border-radius: 1em; padding: 0 1em; bottom: -1em; background: #282828; color: white; text-decoration: none; }
 article.loop .comments a, article.loop .edit a, article.loop .post-link a { color: white; text-decoration: none; }
 article.loop .comments:hover, article.loop .edit:hover, article.loop .post-link:hover { background: #1a98da; }
@@ -238,7 +244,8 @@ main.single img.full { width: 100%; }
 #single-post-header .post-details span a:hover { color: #1a98da; }
 #single-post-header .post-details span i { margin-left: 0.5em; }
 #single-post-header .post-details span.author a { margin-left: 0.5em; }
-#single-post-header .post-edit-link { display: block; position: absolute; bottom: -2.25em; right: 1em; font-size: 1em; padding: 1em; border-radius: 50%; background: #282828; color: white; height: 1em; width: 1em; text-align: center; z-index: 2; }
+#single-post-header .post-edit-link { transition: all ease 0.3s; display: block; position: absolute; bottom: -2.25em; right: 1em; font-size: 1em; padding: 1em; border-radius: 50%; background: #282828; color: white; height: 1em; width: 1em; text-align: center; z-index: 2; }
+#single-post-header .post-edit-link:hover { background: #1a98da; }
 
 .post-thumb-full { width: 100%; height: 100%; background: #FFF; background-position: center; background-size: cover; position: relative; margin-bottom: 100px; z-index: 2; opacity: 0; }
 .post-thumb-full img { width: 100%; }
@@ -246,6 +253,9 @@ main.single img.full { width: 100%; }
 #toggle-header:hover { color: #1a98da; background: rgba(0, 0, 0, 0.75); }
 
 #toggle-header { transition: all ease 0.3s; text-decoration: none; display: block; width: 100%; font-size: 0.5em; text-align: center; color: white; padding: 1em 0; background: rgba(0, 0, 0, 0.25); }
+
+#single-post a.highlighted { transition: all ease 0.3s; background: #DDDDDD; color: black; padding: 0.25em 0.5em; }
+#single-post a.highlighted:hover { background: #282828; color: #1a98da; }
 
 .vcard { display: flex; flex-direction: row; }
 .vcard img.avatar { width: 100px; height: 100px; border-radius: 100px; border: 5px solid #282828; }
@@ -284,7 +294,8 @@ main.wp-page article { height: 100%; min-height: 100%; width: 100%; }
 #page-header { background: black url("img/pw_maze_black.png") repeat; z-index: 10; width: 100%; min-height: 100px; }
 #page-header h1 { text-align: center; padding: 0.25em 0; margin: 0; font-family: "Permanent Marker", cursive; }
 #page-header h1 a { color: white; text-decoration: none; }
-#page-header .post-edit-link { display: block; position: absolute; bottom: -1em; right: 1em; font-size: 1em; padding: 1em; border-radius: 50%; background: #282828; color: white; height: 1em; width: 1em; text-align: center; }
+#page-header .post-edit-link { transition: all ease 0.3s; display: block; position: absolute; bottom: -1em; right: 1em; font-size: 1em; padding: 1em; border-radius: 50%; background: #282828; color: white; height: 1em; width: 1em; text-align: center; z-index: 10; }
+#page-header .post-edit-link:hover { background: #1a98da; }
 
 #construction { width: 100%; height: 100%; background: url("img/construction.jpg") no-repeat; background-size: cover; }
 
@@ -296,9 +307,11 @@ form#contactForm .accent { color: #1a98da; }
 
 .form-group { display: flex; flex-direction: column-reverse; margin: 0 1% 15px 1%; width: 100%; }
 .form-group label { transition: all 0.3s ease; display: inline-block; margin: 1.5em 0 0.25em 0; font-size: 0.75em; color: #282828; text-align: center; }
-.form-group input, .form-group select, .form-group textarea { transition: all 0.3s ease; font-size: 1.25em; display: block; padding: 0.25em 0; width: 100%; background: none; border: 0; border-bottom: 2px solid #282828; outline: none; text-align: center; }
+.form-group input, .form-group select, .form-group textarea { transition: all 0.3s ease; font-size: 1.25em; display: block; padding: 0.25em 0; width: 100%; background: none; border: 0; border-bottom: 2px solid #DDDDDD; outline: none; text-align: center; }
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-bottom: 2px solid #1a98da; }
 .form-group input:focus + label, .form-group select:focus + label, .form-group textarea:focus + label { color: #1a98da; }
+.form-group input:hover, .form-group select:hover, .form-group textarea:hover { outline: none; border-bottom: 2px solid #1a98da; }
+.form-group input:hover + label, .form-group select:hover + label, .form-group textarea:hover + label { color: #1a98da; }
 .form-group textarea { width: 100%; }
 
 input[type="submit"] { transition: all 0.3s ease; font-size: 1.25em; padding: 0.5em; border-radius: 3em; background: #282828; border: none; outline: none; color: white; margin: 1em auto; }
@@ -307,6 +320,14 @@ input[type="submit"]:hover { background: #1a98da; cursor: pointer; cursor: hand;
 input:-webkit-autofill { transition: background-color 5000s ease-in-out 0s; }
 
 .error { color: red; margin: 1em 0; }
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { /* Chrome/Opera/Safari */ color: #282828; font-size: 0.8em; font-family: "Montserrat", sans-serif; }
+
+input::-moz-placeholder, textarea::-moz-placeholder { /* Firefox 19+ */ color: #282828; font-size: 0.8em; font-family: "Montserrat", sans-serif; }
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder { /* IE 10+ */ color: #282828; font-size: 0.8em; font-family: "Montserrat", sans-serif; }
+
+input:-moz-placeholder, textarea:-moz-placeholder { /* Firefox 18- */ color: #282828; font-size: 0.8em; font-family: "Montserrat", sans-serif; }
 
 .spinner { width: 50px; height: 50px; background-color: #333; display: none; margin: 200px auto; -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out; animation: sk-rotateplane 1.2s infinite ease-in-out; }
 
@@ -346,9 +367,11 @@ input:-webkit-autofill { transition: background-color 5000s ease-in-out 0s; }
 @media (min-width: 768px) and (max-width: 1024px) { header .nickname-spill-control .nickname { font-size: 5em; top: -0.25em; } }
 /* ##Device = Tablets, Ipads (landscape) ##Screen = B/w 768px to 1024px
 */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) { #social { display: none; } }
 /* ##Device = Low Resolution Tablets, Mobiles (Landscape) ##Screen = B/w 481px to 767px
 */
-@media (min-width: 481px) and (max-width: 767px) { header .nickname-spill-control .nickname { font-size: 4em; top: -0.15em; }
+@media (min-width: 481px) and (max-width: 767px) { #social { display: none; }
+  header .nickname-spill-control .nickname { font-size: 4em; top: -0.15em; }
   #captionText h1 { font-size: 1.5rem; line-height: 1.5em; }
   #captionText h2 { font-size: 0.75em; letter-spacing: 0.25em; }
   #navStandard a { display: none; }
@@ -359,7 +382,8 @@ input:-webkit-autofill { transition: background-color 5000s ease-in-out 0s; }
   #single-post-header .post-details span { margin: 0.2em 0; } }
 /* ##Device = Most of the Smartphones Mobiles (Portrait) ##Screen = B/w 320px to 479px
 */
-@media (max-width: 480px) { header .nickname-spill-control .nickname { display: none; }
+@media (max-width: 480px) { #social { display: none; }
+  header .nickname-spill-control .nickname { display: none; }
   #navStandard a { display: none; }
   #navStandard a.icon, #navStandard a.search { display: inline-block; margin-left: 1em; }
   #video-splash { left: -90%; }
@@ -375,7 +399,8 @@ input:-webkit-autofill { transition: background-color 5000s ease-in-out 0s; }
   h2 { font-size: 1.5em; }
   #page-header h1 { top: 0.5em; }
   .dynamic-row { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; }
-  .form-group { margin: 25px 1% 15px 1%; } }
+  .form-group { margin: 25px 1% 15px 1%; }
+  #single-post { font-size: 0.8em; line-height: 1.8em; } }
 /*!
  * animate.css -http://daneden.me/animate
  * Version - 3.6.0

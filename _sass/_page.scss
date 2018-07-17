@@ -29,18 +29,23 @@ main.wp-page{
 	}
 	// Edit
 	.post-edit-link{
-		display:block;
-		position:absolute;
-		bottom:-1em;
-		right:1em;
-		font-size: 1em;
-		padding:1em;
-		border-radius: 50%;
-		background: $theme-medium;
-		color:white;
-		height:1em;
-		width:1em;
-		text-align: center;
+			transition: $smoothTrans;
+			display:block;
+			position:absolute;
+			bottom:-1em;
+			right:1em;
+			font-size: 1em;
+			padding:1em;
+			border-radius: 50%;
+			background: $theme-medium;
+			color:white;
+			height:1em;
+			width:1em;
+			text-align: center;
+			z-index:10;
+	}
+	.post-edit-link:hover{
+		background: $theme-accent;
 	}
 }
 
