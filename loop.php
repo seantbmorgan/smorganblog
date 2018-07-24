@@ -2,12 +2,12 @@
 
 	<!-- article -->
 	<article class="loop" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
+		
 		<div class="post-header">
 			<!-- post thumbnail and Title -->
 			<?php if ( has_post_thumbnail()) : // Check if thumbnail exists ?>
 				<?php $thumbUrl = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>
-				<div style="background-image:url('<?php echo $thumbUrl; ?>;')" class="post-thumb" ></div>
+				<div style="background-image:url('<?php echo $thumbUrl; ?>')" class="post-thumb" ></div>
 			<?php endif; ?>
 
 			<?php if ( !has_post_thumbnail()) : // Check if thumbnail exists ?>

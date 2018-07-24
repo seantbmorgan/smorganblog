@@ -39,7 +39,11 @@
 
 
 		<?php //get_sidebar(); ?>
-
+		<div id="social">
+			<a href="https://www.facebook.com/seantbmorgan" target="_blank"><i class="fab fa-facebook-f"></i></a>
+			<a href="https://www.linkedin.com/in/seantbmorgan/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+			<a href="https://twitter.com/therealbongwa" target="_blank"><i class="fab fa-twitter"></i></a>
+		</div>
 		<main role="main" id="page-main">
 			<!-- section -->
 			<section>
