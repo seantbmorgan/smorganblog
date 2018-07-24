@@ -148,7 +148,7 @@ video { position: absolute; top: 0; bottom: 0; right: 0; left: 0; margin: auto; 
 
 #close-search { display: block; }
 
-#skip-splash { transition: all ease 0.3s; width: 100%; padding: 0.5em 0; background: rgba(255, 255, 255, 0.75); position: absolute; bottom: 0; left: 0; margin: 0 auto; font-size: 1em; color: #282828; text-align: center; border-top: white 2px solid; }
+#skip-splash { transition: all ease 0.3s; width: 100%; padding: 0.75em 0; background: rgba(255, 255, 255, 0.75); position: absolute; bottom: 0; left: 0; margin: 0 auto; font-size: 0.75em; color: #282828; text-align: center; border-top: white 1px solid; }
 
 #skip-splash:hover { color: #131313; background: rgba(255, 255, 255, 0.95); }
 
@@ -189,7 +189,7 @@ h1 { font-size: 2.5em; margin: 0.75em 0; }
 
 h2 { font-size: 2em; margin: 0.75em 0; }
 
-h3 { font-size: 1.5em; margin: 0.75em 0; }
+h3 { font-size: 1.75em; margin: 0.75em 0; }
 
 ul li, ol li { width: 90%; list-style-position: inside; text-indent: -1em; padding-left: 1em; margin: 0.5em auto; }
 
@@ -235,10 +235,10 @@ main.single article.single { width: 100%; line-height: 2.25em; letter-spacing: 0
 main.single img.full { width: 100%; }
 
 #single-post-header { background: black url("img/pw_maze_black.png") repeat; position: fixed; top: 100px; z-index: 50; width: 100%; }
-#single-post-header h1 { text-align: center; font-family: "Permanent Marker", cursive; margin: 0.25em 0; }
-#single-post-header h1 a { transition: all ease 0.3s; color: white; text-decoration: none; }
-#single-post-header h1 a:hover { color: #1a98da; }
-#single-post-header .post-details { display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 0.5em; }
+#single-post-header h3 { text-align: center; font-family: "Permanent Marker", cursive; margin: 0.25em 0; }
+#single-post-header h3 a { transition: all ease 0.3s; color: white; text-decoration: none; }
+#single-post-header h3 a:hover { color: #1a98da; }
+#single-post-header .post-details { display: flex; flex-direction: row; justify-content: center; align-items: center; font-size: 0.75em; }
 #single-post-header .post-details span { display: flex; flex-direction: row; justify-content: center; align-items: center; flex-grow: 1; color: white; }
 #single-post-header .post-details span a { transition: all ease 0.3s; color: white; text-decoration: none; }
 #single-post-header .post-details span a:hover { color: #1a98da; }
@@ -252,7 +252,7 @@ main.single img.full { width: 100%; }
 
 #toggle-header:hover { color: #1a98da; background: rgba(0, 0, 0, 0.75); }
 
-#toggle-header { transition: all ease 0.3s; text-decoration: none; display: block; width: 100%; font-size: 0.5em; text-align: center; color: white; padding: 1em 0; background: rgba(0, 0, 0, 0.25); }
+#toggle-header { transition: all ease 0.3s; text-decoration: none; display: block; width: 100%; font-size: 0.5em; text-align: center; color: white; padding: 0.5em 0; margin-top: 0.5em; background: rgba(0, 0, 0, 0.25); }
 
 #single-post a.highlighted { transition: all ease 0.3s; background: #DDDDDD; color: black; padding: 0.25em 0.5em; }
 #single-post a.highlighted:hover { background: #282828; color: #1a98da; }

@@ -65,7 +65,7 @@
 			}
 		},
 		checkScroll:() => {
-			console.log(app.page.social.height());
+			// console.log(app.page.social.height());
 				// End Header Scroll
 				if(window.pageYOffset>app.page.social.height()+100){
 					app.lockSocial(true);
@@ -95,7 +95,7 @@
 						}
 						// Resent Current Scroll Position
 						app.scroll.current = window.pageYOffset;
-					}else if(window.pageYOffset<app.scroll.current-25){
+					}else if(window.pageYOffset<app.scroll.current-50){
 						if(app.scroll.timeout!==null){
 							clearTimeout(app.scroll.timeout);
 						}
@@ -125,6 +125,9 @@
 				}
 				if(app.singlePost.content.length){
 					// Single Post
+					if(window.pageYOffset===0 && !app.singlePost.headerOpen){
+						app.singlePost.toggleHeader(true);
+					}
 					if(window.pageYOffset>app.scroll.current){
 						// Scrolling Down
 						if(app.scroll.direction !== "down" && window.pageYOffset>app.viewport.height-app.page.header.height()-app.singlePost.headerHeightConst){
@@ -149,7 +152,7 @@
 						}
 						// Resent Current Scroll Position
 						app.scroll.current = window.pageYOffset;
-					}else if(window.pageYOffset<app.scroll.current-app.singlePost.headerHeightConst){
+					}else if(window.pageYOffset<app.scroll.current-app.singlePost.headerHeightConst-500){
 						if(app.scroll.timeout!==null){
 							clearTimeout(app.scroll.timeout);
 						}
@@ -177,7 +180,7 @@
 													app.scroll.current = window.pageYOffset;
 						}
 						if(window.pageYOffset>600)
-							app.scroll.timeout = setTimeout(function(){showHeader2();},250);
+							app.scroll.timeout = setTimeout(function(){showHeader2();},125);
 						else
 							showHeader2();
 					}

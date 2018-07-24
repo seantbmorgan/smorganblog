@@ -532,16 +532,16 @@ video {
 #skip-splash{
 	transition:$smoothTrans;
 	width:100%;
-	padding:0.5em 0;
+	padding:0.75em 0;
 	background:rgba(255,255,255,0.75);
 	position: absolute;
 	bottom:0;
 	left:0;
 	margin:0 auto;
-	font-size:1em;
+	font-size:0.75em;
 	color:$theme-medium;
 	text-align: center;
-	border-top:white 2px solid;
+	border-top:white 1px solid;
 }
 #skip-splash:hover{
 	color:$theme-dark;
@@ -733,7 +733,7 @@ h2{
 	margin:0.75em 0;
 }
 h3{
-	font-size:1.5em;
+	font-size:1.75em;
 	margin:0.75em 0;
 }
 ul,ol{

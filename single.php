@@ -9,9 +9,9 @@
 
 	<div class="toggle">
 		<!-- post title -->
-		<h1>
+		<h3>
 			<a id="single-post-title" href="javascript:void(0);" title="<?php the_title(); ?>"><?php the_title(); ?></a>
-		</h1>
+		</h3>
 		<!-- /post title -->
 		<?php $post_author_id = get_post_field( 'post_author', $post_id );?>
 		<!-- post details -->
