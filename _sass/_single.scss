@@ -24,7 +24,7 @@ main.single{
 		font-family: $marker;
 		margin:0.25em 0;
 		a{
-			transition:$smoothTrans;
+			transition:$smooth-transition;
 			color:white;
 			text-decoration: none;
 		}
@@ -44,7 +44,7 @@ main.single{
 			@include flex-push;
 			color:white;
 			a{
-				transition:$smoothTrans;
+				transition:$smooth-transition;
 				color:white;
 				text-decoration: none;
 			}
@@ -61,7 +61,7 @@ main.single{
 	}
 	// Edit
 	.post-edit-link{
-		transition: $smoothTrans;
+		transition: $smooth-transition;
 		display:block;
 		position:absolute;
 		bottom:-2.25em;
@@ -102,7 +102,7 @@ main.single{
 	background:rgba(0,0,0,0.75);
 }
 #toggle-header{
-	transition:$smoothTrans;
+	transition:$smooth-transition;
 	text-decoration: none;
 	display:block;
 	width:100%;
@@ -115,7 +115,7 @@ main.single{
 }
 #single-post{
 	a.highlighted{
-		transition: $smoothTrans;
+		transition: $smooth-transition;
 		background: $theme-light;
 		//color:white;
 		color:black;

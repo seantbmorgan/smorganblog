@@ -40,10 +40,9 @@
 			<div class="post-details">
 				<span class="post-cats"><?php echo 'Categories: '; the_category( ', ', '', $post->ID );  ?></span>
 			</div>
-			<span class="comments smoothTrans"><?php if (comments_open( get_the_ID() ) ) comments_popup_link( __( 'No Comments', 'html5blank' ), __( '1 Comment', 'html5blank' ), __( '% Comments', 'html5blank' )); ?></span>
-			<a class="post-link smoothTrans" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">Full Post</a>
 		</div>
-
+		<?php if (comments_open( get_the_ID() ) ) comments_popup_link( __( 'No Comments', 'html5blank' ), __( '1 Comment', 'html5blank' ), __( '% Comments', 'html5blank' ), "button button-rounded position--abs-bottom-left"); ?>
+		<a class="button button-rounded position--abs-bottom-right" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">Full Post</a>
 	</article>
 	<!-- /article -->
 

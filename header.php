@@ -69,19 +69,19 @@
 					</div>
 					<span class="flex-push"></span>
 					<div id="navStandard">
-						<a href="javascript:void(0);" class="icon smoothTrans" id="toggle-nav"><i class="fa fa-bars"></i></a>
-						<a id="blog-link" class="smoothTrans" href="<?php echo home_url(); ?>">Blog</a>
-						<a href="portfolio" class="smoothTrans">Portfolio</a>
-						<a href="resume" class="smoothTrans">Resume</a>
-						<a href="contact" class="smoothTrans">Contact</a>
-						<a href="javascript:void(0);" class="search smoothTrans" id="open-search"><i class="fa fa-search"></i></a>
+						<a href="javascript:void(0);" class="icon smooth-transition" id="toggle-nav"><i class="fa fa-bars"></i></a>
+						<a id="blog-link" class="smooth-transition" href="<?php echo home_url(); ?>">Blog</a>
+						<a href="/index.php/portfolio" class="smooth-transition">Portfolio</a>
+						<a href="/index.php/resume" class="smooth-transition">Resume</a>
+						<a href="/index.php/contact" class="smooth-transition">Contact</a>
+						<a href="javascript:void(0);" class="search smooth-transition" id="open-search"><i class="fa fa-search"></i></a>
 					</div>
 				</div>
 				<div id="navResponsive">
-					<a href="<?php echo home_url(); ?>" class="smoothTrans">Blog</a>
-					<a href="portfolio" class="smoothTrans">Portfolio</a>
-					<a href="resume" class="smoothTrans">Resume</a>
-					<a href="contact" class="smoothTrans">Contact</a>
+					<a href="<?php echo home_url(); ?>" class="smooth-transition">Blog</a>
+					<a href="/index.php/portfolio" class="smooth-transition">Portfolio</a>
+					<a href="/index.php/resume" class="smooth-transition">Resume</a>
+					<a href="/index.php/contact" class="smooth-transition">Contact</a>
 				</div>
 			</header>
 

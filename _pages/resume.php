@@ -1,14 +1,14 @@
 <div id="resume">
 	<div class="nav">
-		<a class="quick-link" href="javascript:void(0);" data-tgt="education">Education</a><a class="quick-link" href="javascript:void(0);" data-tgt="hard-skills">Hard Skills</a><a class="quick-link" href="javascript:void(0);" data-tgt="soft-skills">Soft Skills</a><a class="quick-link" href="javascript:void(0);" data-tgt="professional-experience">Professional Experience</a><a class="quick-link" href="javascript:void(0);" data-tgt="projects">Projects</a><a class="quick-link" href="javascript:void(0);" data-tgt="additional-experience">Additional Experience</a><a class="quick-link" href="javascript:void(0);" data-tgt="interests">Interests</a>
+		<a class="top-link" href="javascript:void(0);" data-tgt="education">Education</a><span class="break">|</span><a class="top-link" href="javascript:void(0);" data-tgt="hard-skills">Hard Skills</a><span class="break">|</span><a class="top-link" href="javascript:void(0);" data-tgt="soft-skills">Soft Skills</a><span class="break">|</span><a class="top-link" href="javascript:void(0);" data-tgt="professional-experience">Professional Experience</a><span class="break">|</span><a class="top-link" href="javascript:void(0);" data-tgt="projects">Projects</a><span class="break">|</span><a class="top-link" href="javascript:void(0);" data-tgt="additional-experience">Additional Experience</a><span class="break">|</span><a class="top-link" href="javascript:void(0);" data-tgt="interests">Interests</a>
 	</div>
 	<div id="resume-head" class="section">
 		<h1>Sean <span class="bold">Morgan</span></h1>
-		<div class="header-line address">Sommerville, MA 02144</div>
+		<div class="header-line address">Somerville, MA 02144</div>
 		<div class="header-line email">seantbmorgan@gmail.com</div>
 	</div>
 	<div id="executive-summary" class="section">
-		Web Developer and litigation support technician with 8+ years of experience in web development and litigation technology support services. Accustomed to high pressure, time-sensitive environments in both individual and team-oriented scenarios. A unicorn encompassing both creative design flair and technical hard skills aptitude with excellent communication skills, commendable individual oversight and drive, with maturity in direct client management.
+		Digital media know-it-all and litigation consultant with 8+ years of experience in web development and litigation technology support services. Accustomed to high pressure, time-sensitive environments in both individual and team-oriented scenarios. A unicorn encompassing both creative design flair and technical hard skills aptitude with excellent communication skills, commendable individual oversight and drive, with maturity in direct client management.
 	</div>
 	<div id="education" class="section">
 		<h3>Educational Background</h3>

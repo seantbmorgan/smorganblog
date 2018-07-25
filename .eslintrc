@@ -4,6 +4,15 @@
       },
     "rules": {
         "semi": ["error", "always"],
-        "quotes": ["error", "double"]
+        "quotes": ["error", "double"],
+        "eqeqeq": ["error", "always"],
+        "no-multi-spaces": ["error", { "ignoreEOLComments": false }],
+        "no-redeclare": ["error", { "builtinGlobals": true }],
+        "comma-dangle": ["error", "never"],
+        "array-bracket-spacing": ["error", "never"],
+        "key-spacing": ["error", { "mode": "strict" }],
+        "no-trailing-spaces": "error",
+        "space-before-blocks": "error",
+        "indent": ["warn", "tab"]
     }
 }

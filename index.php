@@ -28,7 +28,7 @@
 					<h1>Digital Media Guru</h1>
 					<h2>Cerebral Kickboxer &amp; Striking Enthusiast</h2>
 				</div>
-				<a id="skip-splash" href="javascript:void(0);" class="smoothTrans"><i class="fa fa-angle-double-down"></i></a>
+				<a id="skip-splash" href="javascript:void(0);" class="smooth-transition"><i class="fa fa-angle-double-down"></i></a>
 			</div>
 		</div>
 	</div>
@@ -40,8 +40,8 @@
 
 		<?php //get_sidebar(); ?>
 		<div id="social">
-			<a href="https://www.facebook.com/seantbmorgan" target="_blank"><i class="fab fa-facebook-f"></i></a>
-			<a href="https://www.linkedin.com/in/seantbmorgan/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+			<a class="button button-circle" href="https://www.facebook.com/seantbmorgan" target="_blank"><i class="fab fa-facebook-f"></i></a>
+			<a class="button button-circle" href="https://www.linkedin.com/in/seantbmorgan/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
 			<!--<a href="https://twitter.com/therealbongwa" target="_blank"><i class="fab fa-twitter"></i></a>-->
 		</div>
 		<main role="main" id="page-main">

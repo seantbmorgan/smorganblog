@@ -3,7 +3,6 @@
 //==============================================================================
 // Colors
 $theme-white:#FFF;
-$theme-dark:#131313;
 $theme-medium:#282828;
 $theme-light:#DDDDDD;
 $theme-accent:#1a98da;
@@ -18,7 +17,7 @@ $padding-one:4%;
 $padding-two:2%;
 $padding-three:10%;
 
-$smoothTrans:all ease 0.3s;
+$smooth-transition:all ease 0.3s;
 //==============================================================================
 // Mixins
 //==============================================================================
@@ -63,8 +62,9 @@ $smoothTrans:all ease 0.3s;
 	@include flex-center;
 	width:100%;
 }
-.smoothTrans{
-	transition:$smoothTrans;
+
+.smooth-transition{
+	transition:$smooth-transition;
 }
 
 
@@ -124,6 +124,57 @@ $smoothTrans:all ease 0.3s;
 	}
 }
 
+
+
+.button{
+	display: inline-block;
+	transition: $smooth-transition;
+	background: $color-dark-500;
+	color: $color-light-500;
+	text-decoration: none;
+	z-index:10;
+	&:hover{
+		background: $color-accent-300;
+		color: $color-light-500;
+		cursor: pointer;
+		cursor: hand;
+		text-decoration: none;
+	}
+}
+.button-rounded{
+	font-size: $size-font-base;
+	padding: ($size-font-base/2) $size-font-base;
+	height: $size-font-base;
+	border-radius: $size-font-base;
+	white-space: nowrap;
+}
+.button-circle{
+	font-size: $size-font-base;
+	padding: $size-font-base;
+	height: $size-font-base;
+	width: $size-font-base;
+	border-radius: 50%;
+	text-align: center;
+}
+
+.position--abs-bottom-right{
+	position: absolute;
+	right:$size-font-base;
+}
+.position--abs-bottom-left{
+	position: absolute;
+	left:$size-font-base;
+}
+.button-circle.position--abs-bottom-right, .button-circle.position--abs-bottom-left{
+	bottom:(($size-font-base+($size-font-base/2))*-1);
+}
+.button-rounded.position--abs-bottom-right, .button-rounded.position--abs-bottom-left{
+	bottom:(($size-font-base)*-1);
+}
+
+
+
+
 //==============================================================================
 // Main Layout with Stiky Footer
 //==============================================================================
@@ -145,46 +196,16 @@ main{
 	font-size: 16px;
 }
 #social{
-	//width:10em;
 	padding:2em;
-	//height:auto;
 	position: absolute;
 	top:100vh;
 	z-index:10;
 	@include flex-column;
 	@include flex-center;
-	a{
-		transition: $smoothTrans;
-		display:block;
-		font-size: 1em;
-		padding:1em;
-		border-radius: 50%;
-		background: $theme-medium;
-		color:white;
-		height:1em;
-		width:1em;
-		text-align: center;
-	}
 	a:not(:first-child){
 		margin-top:1em;
 	}
-	a:hover{
-		background: $theme-accent;
-	}
 }
-/*
-main{
-	width:80%;
-}
-
-.dynamic-margin{
-	margin-left:20%;
-}
-.dynamic-position{
-	position:fixed !important;
-	top:calc(100px + 4%);
-}
-*/
 aside{
 	position:relative;
 	width:20%;
@@ -239,8 +260,6 @@ header{
 	background:white;
 	width:100%;
 	text-overflow: hidden;
-	//height:100px;
-	//z-index: 5;
 	.nickname-spill-control{
 		height:100px;
 		width:100%;
@@ -292,9 +311,6 @@ header{
 		display: none;
 		font-size: 1.5em;
 	}
-	a.search{
-
-	}
 }
 #navResponsive{
 	display:none;
@@ -333,17 +349,6 @@ header{
 			top:0px;
 			left:0px;
 		}
-		/*
-		.initials{
-			position: absolute;
-			font-family:$script;
-			font-size:25em;
-			color:#FFF;
-			opacity:0.05;
-			z-index: 2;
-			user-select: none;
-		}
-		*/
 		h3{
 			color:#FFF;
 			font-size:1em;
@@ -399,8 +404,6 @@ video {
 	h1,h2{
 		color:black;
 		margin:3rem;
-		//font-family: $marker;
-		//text-shadow: black 0.04em 0.04em 0.1em;
 		z-index: 3;
 		text-align: center;
 		animation-fill-mode: forwards;
@@ -451,7 +454,7 @@ video {
 				li{
 					display:inline;
 					a{
-						transition: $smoothTrans;
+						transition: $smooth-transition;
 						font-size:0.75em;
 						text-decoration: none;
 						color:#999;
@@ -470,7 +473,7 @@ video {
 		}
 	}
 	input[type=search]{
-		background:$theme-dark;
+		background:$color-dark-500;
 		border:0;
 		outline:none;
 		flex-grow:1;
@@ -488,7 +491,6 @@ video {
 		padding:0.5em;
 		color:white;
 		margin-right:0.5em;
-		//border-radius: 2em;
 	}
 	button:hover{
 		cursor: pointer;
@@ -508,21 +510,6 @@ video {
 #categories.section{
 	display:none;
 }
-#open-search{
-	//display:none;
-	//line-height: 2em;
-	//text-align: center;
-	//padding:0.5em;
-	//border-radius: 2em;
-	//background: $theme-medium;
-	//color:white;
-	//width:2em;
-	//height:2em;
-	//position: fixed;
-	//z-index:200;
-	//bottom:1em;
-	//left:1em;
-}
 #close-search{
 	display:block;
 }
@@ -530,7 +517,7 @@ video {
 // Time Fo' Wordpress
 //==============================================================================
 #skip-splash{
-	transition:$smoothTrans;
+	transition:$smooth-transition;
 	width:100%;
 	padding:0.75em 0;
 	background:rgba(255,255,255,0.75);
@@ -544,7 +531,7 @@ video {
 	border-top:white 1px solid;
 }
 #skip-splash:hover{
-	color:$theme-dark;
+	color:$color-dark-500;
 	background:rgba(255,255,255,0.95);
 }
 .fill{
@@ -578,55 +565,6 @@ article.loop{
 			width:100%;
 		}
 	}
-	// Post Comments
-	.post-edit-link{
-			transition: $smoothTrans;
-			display:block;
-			position:absolute;
-			bottom:-1em;
-			right:1em;
-			font-size: 1em;
-			padding:1em;
-			border-radius: 50%;
-			background: $theme-medium;
-			color:white;
-			height:1em;
-			width:1em;
-			text-align: center;
-			z-index:10;
-	}
-	.post-edit-link:hover{
-		background: $theme-accent;
-	}
-	.comments,.edit,.post-link{
-		position: absolute;
-		display: inline-block;
-		line-height: 2em;
-		font-size: 1em;
-		border-radius: 1em;
-		padding: 0 1em;
-		bottom:-1em;
-		background: $theme-medium;
-		color:white;
-		text-decoration: none;
-		a{
-			color:white;
-			text-decoration: none;
-		}
-	}
-	.comments:hover,.edit:hover,.post-link:hover{
-			background:$theme-accent;
-
-	}
-	.post-link{
-		right:1em;
-	}
-	.comments{
-		left:1em;
-	}
-	.edit{
-		right:1em;
-	}
 	// Post Title
 	h2{
 		a{
@@ -641,23 +579,13 @@ article.loop{
 	// Post Details
 	.post-details{
 		@include flex-row;
-		//@include flex-center;
-		//position: absolute;
-		//bottom:0;
 		width:100%;
 		margin:1em 0;
-		//z-index: 3;
-		//background: rgba(255,255,255,0.75);
-		.post-cats{
-		//@include flex-row;
-		}
 		span{
 			@include flex-wrap;
 			font-size: 0.75em;
 			display:inline-flex;
 			flex-grow: 1;
-			//line-height: 1em;
-			//padding:0.5em;
 			a{
 				margin-left: 0.5em;
 			}
@@ -687,7 +615,7 @@ article.loop{
 }
 .post-header{
 	.post-thumb::after{
-		transition:$smoothTrans;
+		transition:$smooth-transition;
 		content:'';
 		display:block;
 		font-family: $marker;
@@ -811,5 +739,5 @@ iframe{
 	border-bottom:1px solid #ccc;
 }
 input[type=search]:-webkit-autofill {
-    -webkit-box-shadow: inset 0 0 0px 9999px $theme-dark;
+    box-shadow: inset 0 0 0px 9999px $color-dark-500;
 }

@@ -1,0 +1,13 @@
+{
+    "source": ["_sass/**/*.json"],
+    "platforms": {  
+      "scss": {
+        "transformGroup": "scss",
+        "buildPath": "_sass/",
+        "files": [{
+          "destination": "_properties.scss",
+          "format": "scss/variables"
+        }]
+      }
+    }
+  }
