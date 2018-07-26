@@ -12,7 +12,7 @@ form#contactForm{
 		text-align: center;
 	}
 	.accent{
-		color:$theme-accent;
+		color:$color-accent-500;;
 	}
 }
 .form-group {
@@ -30,8 +30,7 @@ form#contactForm{
   }
 
   input, select, textarea {
-    transition: all 0.3s ease;
-    //border: 1px solid #eeeeee;
+    transition: $smooth-transition;
 		font-size:1.25em;
     display: block;
     padding: 0.25em 0;
@@ -43,20 +42,18 @@ form#contactForm{
 		text-align: center;
     &:focus {
       outline: none;
-      //border-color: #2d8cf0;
-			border-bottom:2px solid $theme-accent;
+			border-bottom:2px solid $color-accent-500;;
 
       +label {
-        color: $theme-accent;
+        color: $color-accent-500;;
       }
     }
 		&:hover {
       outline: none;
-      //border-color: #2d8cf0;
-			border-bottom:2px solid $theme-accent;
+			border-bottom:2px solid $color-accent-500;;
 
       +label {
-        color: $theme-accent;
+        color: $color-accent-500;;
       }
     }
   }
@@ -77,9 +74,8 @@ input[type="submit"]{
 	color:white;
 	margin:1em auto;
 	&:hover{
-		background:$theme-accent;
-		cursor: pointer;
-		cursor: hand;
+		@include hover-hand;
+		background:$color-accent-500;;
 	}
 }
 input:-webkit-autofill {

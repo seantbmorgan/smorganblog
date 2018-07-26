@@ -2,32 +2,25 @@
 // SASS Variables
 //==============================================================================
 // Colors
-$theme-white:#FFF;
 $theme-medium:#282828;
 $theme-light:#DDDDDD;
-$theme-accent:#1a98da;
 // Fonts
 $typeface: 'Montserrat', sans-serif;
 $script: 'Kaushan Script', cursive;
 $marker: 'Permanent Marker', cursive;
 // Font Base
-$base-font-size:18px;
 
-$padding-one:4%;
-$padding-two:2%;
-$padding-three:10%;
+
 
 $smooth-transition:all ease 0.3s;
 //==============================================================================
 // Mixins
 //==============================================================================
 @mixin flex-column{
-	display: -webkit-flex;
 	display: flex;
 	flex-direction: column;
 }
 @mixin flex-row{
-	display: -webkit-flex;
 	display: flex;
 	flex-direction: row;
 }
@@ -40,6 +33,14 @@ $smooth-transition:all ease 0.3s;
 }
 @mixin flex-wrap{
 	flex-wrap:wrap;
+}
+@mixin hover-hand{
+	cursor: pointer;
+	cursor: hand;
+}
+@mixin display-fill{
+	width:100%;
+	height:100%;
 }
 //==============================================================================
 // Mixin - Classes
@@ -83,8 +84,7 @@ $smooth-transition:all ease 0.3s;
 #loading{
 	@include flex-column;
 	@include flex-center;
-	width:100%;
-	height:100%;
+	@include display-fill;
 	position: fixed;
 	top:0;
 	left:0;
@@ -129,15 +129,14 @@ $smooth-transition:all ease 0.3s;
 .button{
 	display: inline-block;
 	transition: $smooth-transition;
-	background: $color-dark-500;
+	background: $color-dark-300;
 	color: $color-light-500;
 	text-decoration: none;
 	z-index:10;
 	&:hover{
-		background: $color-accent-300;
+		@include hover-hand;
+		background: $color-accent-500;
 		color: $color-light-500;
-		cursor: pointer;
-		cursor: hand;
 		text-decoration: none;
 	}
 }
@@ -157,22 +156,29 @@ $smooth-transition:all ease 0.3s;
 	text-align: center;
 }
 
-.position--abs-bottom-right{
+.position--abs-BR{
 	position: absolute;
 	right:$size-font-base;
 }
-.position--abs-bottom-left{
-	position: absolute;
+.position--abs-BL{
+	position: absolute; 
 	left:$size-font-base;
 }
-.button-circle.position--abs-bottom-right, .button-circle.position--abs-bottom-left{
+.button-circle.position--abs-BR, .button-circle.position--abs-BL{
 	bottom:(($size-font-base+($size-font-base/2))*-1);
 }
-.button-rounded.position--abs-bottom-right, .button-rounded.position--abs-bottom-left{
+.button-rounded.position--abs-BR, .button-rounded.position--abs-BL{
 	bottom:(($size-font-base)*-1);
 }
 
-
+a{
+	transition: $smooth-transition;
+	color:$color-medium-900;
+}
+a:hover{
+	@include hover-hand;
+	color:$color-accent-500;
+}
 
 
 //==============================================================================
@@ -183,25 +189,24 @@ body{padding-top:100px;}
 .site {
 	@include flex-column;
 	font-family: $typeface;
-	font-size: $base-font-size;
+	font-size: $size-font-base;
 }
 main{
-	position: relative;
 	@include flex-row;
+	position: relative;
+	padding:$white-space-small-percent $white-space-large-percent;
 	background: white url('img/sayagata-400px.png') repeat;
-  flex-grow:1;
-	padding:$padding-two $padding-three;
+  	flex-grow:1;
 	margin-bottom: 200px;
 	z-index: 2;
-	font-size: 16px;
 }
 #social{
-	padding:2em;
+	@include flex-column;
+	@include flex-center;
+	padding:$white-space-large-rem;
 	position: absolute;
 	top:100vh;
 	z-index:10;
-	@include flex-column;
-	@include flex-center;
 	a:not(:first-child){
 		margin-top:1em;
 	}
@@ -209,7 +214,7 @@ main{
 aside{
 	position:relative;
 	width:20%;
-	padding:0 $padding-two 0 0;
+	padding:0 $white-space-small-percent 0 0;
 	form.search{
 		width:100%;
 		@include flex-row;
@@ -219,7 +224,7 @@ aside{
 				margin:0 1em;
 				line-height: 2em;
 				padding:0.5em;
-				border-radius: 2em;
+				border-radius: $white-space-large-rem;
 				background: $theme-medium;
 				color:white;
 				border:none;
@@ -233,18 +238,18 @@ footer{
 	position: fixed;
 	bottom:0;
 	height:200px;
-	width:80%;
+	width:84%;
 	background: black url('img/pw_maze_black.png') repeat;
 	z-index:1;
 	color:white;
 	display:none;
 	text-align: center;
-	padding:0 10%;
+	padding:0 $white-space-large-percent;
 	a,a:visited{
 		color:white;
 	}
 	a:hover{
-		color:$theme-accent;
+		color:$color-accent-500;;
 	}
 }
 //==============================================================================
@@ -252,14 +257,16 @@ footer{
 //==============================================================================
 header{
 	min-height:100px;
-	//padding:0 $padding-one;
 	position:fixed;
 	top:0px;
 	width:100%;
 	z-index:100;
 	background:white;
-	width:100%;
 	text-overflow: hidden;
+	.row{
+		width:90%;
+		margin:auto;
+	}
 	.nickname-spill-control{
 		height:100px;
 		width:100%;
@@ -278,7 +285,6 @@ header{
 	.logo{
 		width:150px;
 		height:100px;
-		margin-left: $padding-one;
 		img{
 			width:100%;
 		}
@@ -288,24 +294,23 @@ header{
 
 #navStandard {
   overflow: hidden;
-	margin-right: $padding-one;
 	a{
 		display: inline-block;
 		color: black;
 		text-align: center;
-		margin-left:2em;
+		margin-left:$white-space-large-rem;
 		text-decoration: none;
 		height:100px;
 		line-height: 100px;
 	}
 	a:hover {
-		color: $theme-accent;
+		color: $color-accent-500;;
 	}
 	a.active {
-		color: $theme-accent;
+		color: $color-accent-500;;
 		height:80px;
 		line-height: 80px;
-		border-bottom:10px solid $theme-accent;
+		border-bottom:10px solid $color-accent-500;
 	}
 	a.icon{
 		display: none;
@@ -326,100 +331,31 @@ header{
 		text-decoration: none;
 		color:black;
 	}
-	a:hover{
-		color:$theme-accent;
-	}
 }
-#splash{
-	@include flex-column;
-	@include flex-center;
-	width:100%;
-	background: white;
-	overflow: hidden;
-	z-index:50;
-	.fill-image{
-		@include flex-column;
-		@include flex-center;
-		width:900px;
-		height:300px;
-		img{
-			position: absolute;
-			width:100%;
-			z-index: 1;
-			top:0px;
-			left:0px;
-		}
-		h3{
-			color:#FFF;
-			font-size:1em;
-			text-shadow: black 0.05em 0.05em 0.1em;
-			z-index: 3;
-		}
-	}
-}
+
+
+
 #splash{
 	position: relative;
 	height:calc(100vh - 100px);
 	width:100%;
 	z-index:10;
+	background: url('img/splash.jpg');	
+	background-position: center;
+	background-size:cover;
+	background-attachment: fixed;
+	transform: translate3d(0,0,0);
 }
 #splash::after{
 	content:'';
-	height:100%;
-	width:100%;
-	background: url('img/cover_after.png') repeat;
+	display: inline-block;
+	@include display-fill;
+	background: url('img/splash_after.png');
+	background-position: center;
+	background-size:cover;
 	z-index:20;
 }
-#video-splash {
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-}
-video {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    margin: auto;
-    min-height: 50%;
-    min-width: 50%;
-}
-#caption{
-	//@include flex-column;
-	//@include flex-center;
-	position: absolute;
-	top:0;
-	left:0;
-	width:100%;
-	height:100%;
-	z-index:30;
-}
-#captionText{
-	width:100%;
-	padding:2rem;
-	background:(rgba(255,255,255,0.5));
-	h1,h2{
-		color:black;
-		margin:3rem;
-		z-index: 3;
-		text-align: center;
-		animation-fill-mode: forwards;
-	}
-	h1{
-		font-family: $marker;
-		font-size:2em;
-		letter-spacing: 0.25em;
-		line-height: 3em;
-	}
-	h2{
-		font-size:0.8em;
-		letter-spacing: 1em;
-		line-height: 2em;
-	}
-}
+
 
 #search-bar{
 	@include flex-column;
@@ -459,9 +395,6 @@ video {
 						text-decoration: none;
 						color:#999;
 					}
-					a:hover{
-						color:$theme-accent;
-					}
 				}
 			}
 		}
@@ -493,8 +426,7 @@ video {
 		margin-right:0.5em;
 	}
 	button:hover{
-		cursor: pointer;
-		cursor: hand;
+		@include hover-hand;
 	}
 	a{
 		font-size:1em;
@@ -503,8 +435,7 @@ video {
 		color:white;
 	}
 	a:hover{
-		cursor: pointer;
-		cursor: hand;
+		@include hover-hand;
 	}
 }
 #categories.section{
@@ -520,19 +451,25 @@ video {
 	transition:$smooth-transition;
 	width:100%;
 	padding:0.75em 0;
-	background:rgba(255,255,255,0.75);
+	//background:$color-dark-500;
 	position: absolute;
 	bottom:0;
 	left:0;
 	margin:0 auto;
-	font-size:0.75em;
-	color:$theme-medium;
+	font-size:$size-font-small;
+	color:$color-medium-500;
 	text-align: center;
-	border-top:white 1px solid;
+	//border-top:$color-dark-900 1px solid;
+}
+#skip-splash.background{
+	color:$color-light-500;
 }
 #skip-splash:hover{
-	color:$color-dark-500;
-	background:rgba(255,255,255,0.95);
+	color:$color-accent-500;
+	font-size:$size-font-large;
+}
+#skip-splash.background:hover{
+	background:$color-alpha-dark-25;
 }
 .fill{
 	position: relative;
@@ -549,13 +486,11 @@ section{
 
 article.loop{
 	width:calc(48% - 4px);
-	margin:0 0 2em $padding-two;
-	//border-top:solid 2px #FFF;
+	margin:0 0 $white-space-large-rem $white-space-small-percent;
 	border:solid 1px $theme-light;
 	background:white;
 	// Thumbnail
 	.post-thumb,.post-no-thumb{
-		//width:100%;
 		@include flex-column;
 		@include flex-center;
 		height:200px;
@@ -599,14 +534,14 @@ article.loop{
 	}
 	// Post Body
 	.post-body{
-		padding:2em;
+		padding:$white-space-large-rem;
 		// Post Excerpt
 		.post-excerpt{
-			padding:$padding-two 0;
-			margin:1em 0;
+			padding:$white-space-small-percent 0;
+			margin:$white-space-medium-rem 0;
 			border-top:1px solid $theme-light;
 			border-bottom:1px solid $theme-light;
-			line-height:1.75em;
+			line-height:$size-line-height-xxl;
 		}
 		h2{
 			margin:0;
@@ -615,37 +550,32 @@ article.loop{
 }
 .post-header{
 	.post-thumb::after{
+		@include display-fill;
 		transition:$smooth-transition;
 		content:'';
 		display:block;
 		font-family: $marker;
-		font-size:2em;
+		font-size:$size-h-1-medium;
 		line-height: 200px;
 		text-align:center;
 		color:black;
 		overflow:hidden;
-		width:100%;
-		height:100%;
 		z-index:5;
 		background:rgba(255,255,255,0);
 	}
 }
 .post-header:hover{
 	.post-thumb::after{
+		@include hover-hand;
 		content:'Continue Reading...';
-		background:rgba(255,255,255,0.55);
+		background: $color-alpha-dark-50;
+		color: $color-light-500;
 		display:block;
-		cursor: pointer;
-		cursor: hand;
 	}
 }
 
 
 
-a:hover{
-	color:$theme-accent;
-	text-decoration: underline;
-}
 
 
 h1,h2,h3{

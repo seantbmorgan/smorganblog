@@ -24,11 +24,10 @@
 			</span>
 			<span id="single-discussion" class="comments"><a href="#comments">Discussion<i class="fas fa-comments"></i></a></span>
 		</div>
-		<?php edit_post_link('<i class="fa fa-edit"></i>'); // Always handy to have Edit Post Links available ?>
 		<!-- /post details -->
 	</div>
 	<a href="javascript:void(0);" id="toggle-header"><i class="fa fa-chevron-up"></i></a>
-
+	<?php edit_post_link('<i class="fa fa-edit"></i>','','','','button button-circle position--abs-BR edit-button'); ?>
 </div>
 
 
@@ -39,7 +38,7 @@
 	<?php $thumbUrl = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>
 	<div id="single-splash" style="background-image:url('<?php echo $thumbUrl; ?>')" class="post-thumb-full" >
 		<div class="fill flex-col flex-center">
-			<a id="skip-splash" href="javascript:void(0);"><i class="fa fa-angle-double-down"></i></a>
+			<a id="skip-splash" class="background" href="javascript:void(0);"><i class="fa fa-angle-double-down"></i></a>
 		</div>
 	</div>
 	<!--<a href="<?php //the_permalink(); ?>" title="<?php //the_title(); ?>" class="post-thumb-full">

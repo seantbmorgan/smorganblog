@@ -18,7 +18,7 @@
 }
 .comment-content{
 	margin-left:calc(100px + 1em);
-	margin-bottom:2em;
+	margin-bottom:$white-space-large-rem;
 }
 cite{
 	color:#1d7a99;
@@ -30,32 +30,30 @@ cite{
 		li{
 			width:95%;
 			min-width: 200px;
-			//margin-left:5%;
 			list-style-position: outside;
 			text-indent:0;
 			padding-left:0;
 			margin:0 0 0 5%;
-			//float:right;
 		}
 	}
 }
 .comment-respond{
 	padding:0.5em;
-	margin:0.5em 0 2em 0;
-	background:white;
-	border: 1px solid $theme-light;
+	margin:0.5em 0 $white-space-large-rem 0;
+	background:$color-light-500;
+	border: 1px solid $color-medium-500;
 }
 .comment-form-comment{
 	label{display:none;}
 }
 .comment-body{
 	padding:0.5em;
-	margin:0.5em 0 2em 0.5em;
-	background:white;
-	border: 1px solid $theme-light;
+	margin:0.5em 0 $white-space-large-rem 0.5em;
+	background:$color-light-500;
+	border: 1px solid $color-medium-500;
 }
 #respond{
-	border-left:5px solid $theme-accent;
+	border-left:5px solid $color-accent-500;;
 	input[type="submit"]{
 		position: absolute;
 		display: inline-block;

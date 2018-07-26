@@ -14,7 +14,7 @@
 				<div class="post-no-thumb"></div>
 			<?php endif; ?>
 			<!-- /post thumbnail -->
-			<?php edit_post_link(); ?>
+			<?php edit_post_link('<i class="fa fa-edit"></i>','','','','button button-circle position--abs-BR'); ?>
 			<a class="hidden-link" href="<?php the_permalink(); ?>"></a>
 		</div>
 		<div class="post-body">
@@ -41,8 +41,8 @@
 				<span class="post-cats"><?php echo 'Categories: '; the_category( ', ', '', $post->ID );  ?></span>
 			</div>
 		</div>
-		<?php if (comments_open( get_the_ID() ) ) comments_popup_link( __( 'No Comments', 'html5blank' ), __( '1 Comment', 'html5blank' ), __( '% Comments', 'html5blank' ), "button button-rounded position--abs-bottom-left"); ?>
-		<a class="button button-rounded position--abs-bottom-right" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">Full Post</a>
+		<?php if (comments_open( get_the_ID() ) ) comments_popup_link( __( 'No Comments', 'html5blank' ), __( '1 Comment', 'html5blank' ), __( '% Comments', 'html5blank' ), "button button-rounded position--abs-BL"); ?>
+		<a class="button button-rounded position--abs-BR" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">Full Post</a>
 	</article>
 	<!-- /article -->
 

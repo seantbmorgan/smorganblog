@@ -37,7 +37,12 @@
 			scroll: {
 				current: 0,
 				direction: null,
-				timeout: null
+				timeout: null,
+				lock: false,
+				toggleLock: function(bool) {
+					app.scroll.lock = bool;
+					console.log(app.scroll.lock);
+				}
 			},
 			viewport: {
 				width: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
@@ -98,6 +103,14 @@
 						if(app.scroll.timeout!==null) {
 							clearTimeout(app.scroll.timeout);
 						}
+						/*
+						if(window.pageYOffset<app.viewport.height*(2/3) && !app.scroll.lock) {
+							app.scroll.toggleLock(true);
+							$("html, body").animate({ scrollTop: 0 }, function() {
+								app.scroll.toggleLock(false);
+							});
+						}
+						*/
 						function showHeader() {
 							// Scrolling Up
 							if(app.scroll.direction !== "up") {
@@ -219,7 +232,7 @@
 			skipSplash: () => {
 				let offset = 0;
 				if(app.page.content.length) {
-					offset = app.page.content.offset().top - app.page.header.height();
+					offset = app.page.content.offset().top;
 				}
 				if(app.singlePost.content.length) {
 					offset = app.singlePost.splash.height();
@@ -260,6 +273,7 @@
 			singlePost: {
 				content: $("#single-post"),
 				header: $("#single-post-header"),
+				edit: $(".edit-button"),
 				headerHeightConst: 0,
 				headerToggle: $("#single-post-header .toggle"),
 				headerOpen: true,
@@ -277,11 +291,13 @@
 						// Open Single Post Header
 						app.singlePost.splash.animate({top: app.singlePost.headerHeightConst+"px","margin-bottom": app.singlePost.headerHeightConst+"px"},250, function() {
 							// Animation Complete
+							app.singlePost.edit.css({"display": "inline-block"});
 						});
 					}else{
 						// Close Single Post Header
 						app.singlePost.splash.animate({top: "0px","margin-bottom": "0px"},250, function() {
 							// Animation Complete
+							app.singlePost.edit.css({"display": "none"});
 						});
 					}
 					app.singlePost.headerToggle.slideToggle(250, function() {

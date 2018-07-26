@@ -1,5 +1,4 @@
 <?php get_header(); ?>
-
 	<!--
 	<div id="splash">
 		<div class="fill-image">
@@ -15,8 +14,9 @@
 		<div id="categories" class="section"><?php wp_list_categories() ?></div>
 	</div>
 
+	<!--
 	<div id="splash">
-		<div id="video-splash">
+		<div id="video-splash"> 
 			<video autoplay loop poster="<?php echo get_template_directory_uri(); ?>/img/poster.png" id="index-video">
 				<source "<?php echo get_template_directory_uri(); ?>/img/cover.webm" type="video/webm">
 				<source src="<?php echo get_template_directory_uri(); ?>/img/cover.mp4" type="video/mp4">
@@ -31,6 +31,10 @@
 				<a id="skip-splash" href="javascript:void(0);" class="smooth-transition"><i class="fa fa-angle-double-down"></i></a>
 			</div>
 		</div>
+	</div>
+-->
+	<div id="splash">
+		<a id="skip-splash" href="javascript:void(0);" class="smooth-transition"><i class="fa fa-angle-double-down"></i></a>
 	</div>
 
 

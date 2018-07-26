@@ -1,4 +1,22 @@
 {
+  "white-space": {
+    "tiny" : { 
+      "percent" : { "value": "1%" },
+      "rem" : { "value": "0.25rem" }
+    },
+    "small" : { 
+      "percent" : { "value": "2%" },
+      "rem" : { "value": "0.5rem" }
+    },
+    "medium": {
+      "percent" : { "value": "4%" },
+      "rem" : { "value": "1rem" }
+    },
+    "large" : {
+      "percent" : { "value": "8%" },
+      "rem" : { "value": "2rem" }
+    } 
+  },
   "size": {
     "h": {
       "1": {
@@ -21,10 +39,22 @@
       }
     },
     "font": {
+      "tiny" : { "value": "0.5em" },
       "small" : { "value": "0.75em" },
       "medium": { "value": "1em" },
       "large" : { "value": "1.25em" },
+      "xl" : { "value": "1.5em" },
+      "xxl" : { "value": "1.5em" },
       "base"  : { "value": "{size.font.medium.value}" }
+    },
+    "line-height" : {
+      "tiny" : { "value": "0.5em" },
+      "small" : { "value": "0.75em" },
+      "medium": { "value": "1em" },
+      "large" : { "value": "1.25em" },
+      "xl" : { "value": "1.5em" },
+      "xxl" : { "value": "1.75em" },
+      "base"  : { "value": "{size.font.medium.value}" }   
     }
   },
   "color": {
@@ -82,6 +112,33 @@
       "700": {"value": "#BE4057"},
       "800": {"value": "#A9394E"},
       "900": {"value": "#943244"}
+    }
+  },
+  "color-alpha": {
+    "light" : {
+      "75": {"value": "rgba(255,255,255,0.75)"},
+      "50": {"value": "rgba(255,255,255,0.50)"},
+      "25": {"value": "rgba(255,255,255,0.25)"}
+    },
+    "medium" : {
+      "75": {"value": "rgba(221,221,221,0.75)"},
+      "50": {"value": "rgba(221,221,221,0.50)"},
+      "25": {"value": "rgba(221,221,221,0.25)"}
+    },
+    "dark" : {
+      "75": {"value": "rgba(19,19,19,0.75)"},
+      "50": {"value": "rgba(19,19,19,0.50)"},
+      "25": {"value": "rgba(19,19,19,0.25)"}
+    },
+    "accent" : {
+      "75": {"value": "rgba(26,152,218,0.75)"},
+      "50": {"value": "rgba(26,152,218,0.50)"},
+      "25": {"value": "rgba(26,152,218,0.25)"}
+    },
+    "warn" : {
+      "75": {"value": "rgba(232,78,106,0.75)"},
+      "50": {"value": "rgba(232,78,106,0.50)"},
+      "25": {"value": "rgba(232,78,106,0.25)"}
     }
   }
 }

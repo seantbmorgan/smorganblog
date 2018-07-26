@@ -1,8 +1,16 @@
 /**
  * Do not edit directly
- * Generated on Wed Jul 25 2018 16:03:55 GMT-0400 (Eastern Daylight Time)
+ * Generated on Thu Jul 26 2018 15:00:21 GMT-0400 (Eastern Daylight Time)
  */
 
+$white-space-tiny-percent: 1%;
+$white-space-tiny-rem: 0.25rem;
+$white-space-small-percent: 2%;
+$white-space-small-rem: 0.5rem;
+$white-space-medium-percent: 4%;
+$white-space-medium-rem: 1rem;
+$white-space-large-percent: 8%;
+$white-space-large-rem: 2rem;
 $size-h-1-small: 1.75rem;
 $size-h-1-medium: 2rem;
 $size-h-1-large: 2.25rem;
@@ -15,10 +23,20 @@ $size-h-3-small: 1.25rem;
 $size-h-3-medium: 1.5rem;
 $size-h-3-large: 1.75rem;
 $size-h-3-base: 1.5rem;
+$size-font-tiny: 0.5rem;
 $size-font-small: 0.75rem;
 $size-font-medium: 1rem;
 $size-font-large: 1.25rem;
+$size-font-xl: 1.5rem;
+$size-font-xxl: 1.5rem;
 $size-font-base: 1rem;
+$size-line-height-tiny: 0.5rem;
+$size-line-height-small: 0.75rem;
+$size-line-height-medium: 1rem;
+$size-line-height-large: 1.25rem;
+$size-line-height-xl: 1.5rem;
+$size-line-height-xxl: 1.75rem;
+$size-line-height-base: 1rem;
 $color-light-100: #ffffff;
 $color-light-200: #ffffff;
 $color-light-300: #ffffff;
@@ -64,3 +82,18 @@ $color-warn-600: #d34761;
 $color-warn-700: #be4057;
 $color-warn-800: #a9394e;
 $color-warn-900: #943244;
+$color-alpha-light-25: rgba(255,255,255,0.25);
+$color-alpha-light-50: rgba(255,255,255,0.50);
+$color-alpha-light-75: rgba(255,255,255,0.75);
+$color-alpha-medium-25: rgba(221,221,221,0.25);
+$color-alpha-medium-50: rgba(221,221,221,0.50);
+$color-alpha-medium-75: rgba(221,221,221,0.75);
+$color-alpha-dark-25: rgba(19,19,19,0.25);
+$color-alpha-dark-50: rgba(19,19,19,0.50);
+$color-alpha-dark-75: rgba(19,19,19,0.75);
+$color-alpha-accent-25: rgba(26,152,218,0.25);
+$color-alpha-accent-50: rgba(26,152,218,0.50);
+$color-alpha-accent-75: rgba(26,152,218,0.75);
+$color-alpha-warn-25: rgba(232,78,106,0.25);
+$color-alpha-warn-50: rgba(232,78,106,0.50);
+$color-alpha-warn-75: rgba(232,78,106,0.75);

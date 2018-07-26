@@ -1,33 +1,23 @@
 #resume{
 	width:80%;
 	margin:0 auto;
-	padding:2em 0;
+	padding:$white-space-large-rem 0;
 	.nav{
 		@include flex-row;
 		@include flex-center;
-		margin-bottom:2em;
-		a:not(:first-child){
-			margin-left:1em;
-		}
+		margin-bottom:$white-space-large-rem;
 	}
 	.break{
-		margin:0 $size-font-base;
+		margin:0 $size-font-base; 
 	}
 	.top-link{
-		color:$color-dark-500;
 		text-align: center;
 		display: flex;
 		text-decoration: none;
-		transition: all 0.3s ease;
+		transition: $smooth-transition;
 		height:100%;
-		&:hover{
-			color: $theme-accent;
-			text-decoration: none;
-			cursor: pointer;
-			cursor: hand;
-		}
 		i{
-			margin:0 ($size-font-base/2);
+			margin:0 $white-space-medium-rem;
 		}
 	}
 	.section{
