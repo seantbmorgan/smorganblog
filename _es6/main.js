@@ -71,7 +71,7 @@
 			},
 			checkScroll: () => {
 				// End Header Scroll
-				if(window.pageYOffset>app.page.social.height()+100) {
+				if(window.pageYOffset>app.page.social.height()+50) {
 					app.lockSocial(true);
 				}else if(window.pageYOffset<=app.viewport.height) {
 					app.lockSocial(false);
@@ -245,7 +245,7 @@
 			},
 			lockSocial: (toggle) => {
 				if (toggle)
-					app.page.social.css({"position": "fixed","top": app.viewport.height - app.page.social.height() - 100});
+					app.page.social.css({"position": "fixed","top": app.viewport.height - app.page.social.height() - 50});
 				else
 					app.page.social.css({"position": "absolute","top": "100vh"});
 			},

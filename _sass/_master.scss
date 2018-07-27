@@ -12,6 +12,10 @@ $marker: 'Permanent Marker', cursive;
 
 
 
+
+
+$post-thumb-height:200px;
+$footer-height:200px;
 $smooth-transition:all ease 0.3s;
 //==============================================================================
 // Mixins
@@ -125,7 +129,6 @@ $smooth-transition:all ease 0.3s;
 }
 
 
-
 .button{
 	display: inline-block;
 	transition: $smooth-transition;
@@ -143,7 +146,7 @@ $smooth-transition:all ease 0.3s;
 .button-rounded{
 	font-size: $size-font-base;
 	padding: ($size-font-base/2) $size-font-base;
-	height: $size-font-base;
+	//height: $size-font-base;
 	border-radius: $size-font-base;
 	white-space: nowrap;
 }
@@ -197,7 +200,7 @@ main{
 	padding:$white-space-small-percent $white-space-large-percent;
 	background: white url('img/sayagata-400px.png') repeat;
   	flex-grow:1;
-	margin-bottom: 200px;
+	margin-bottom: $footer-height;
 	z-index: 2;
 }
 #social{
@@ -237,7 +240,7 @@ footer{
 	@include flex-center;
 	position: fixed;
 	bottom:0;
-	height:200px;
+	height:$footer-height;
 	width:84%;
 	background: black url('img/pw_maze_black.png') repeat;
 	z-index:1;
@@ -457,7 +460,7 @@ header{
 	left:0;
 	margin:0 auto;
 	font-size:$size-font-small;
-	color:$color-medium-500;
+	color:$color-dark-500;
 	text-align: center;
 	//border-top:$color-dark-900 1px solid;
 }
@@ -493,7 +496,7 @@ article.loop{
 	.post-thumb,.post-no-thumb{
 		@include flex-column;
 		@include flex-center;
-		height:200px;
+		height:$post-thumb-height;
 		background-position: center;
 		background-size:cover;
 		img{
@@ -556,12 +559,11 @@ article.loop{
 		display:block;
 		font-family: $marker;
 		font-size:$size-h-1-medium;
-		line-height: 200px;
+		line-height: $post-thumb-height;
 		text-align:center;
-		color:black;
+		color: $color-light-500;
 		overflow:hidden;
 		z-index:5;
-		background:rgba(255,255,255,0);
 	}
 }
 .post-header:hover{
@@ -580,7 +582,6 @@ article.loop{
 
 h1,h2,h3{
 	font-weight: bold;
-	//margin:0.5em 0;
 }
 h1{
 	font-size:2.5em;

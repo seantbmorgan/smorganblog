@@ -19,6 +19,6 @@
 
 <?php endif; ?>
 
-<?php comment_form(); ?>
+<?php comment_form(array('cancel_reply_link'=>'Cancel Reply','submit_button' => '<input name="%1$s" type="submit" id="%2$s" class="%3$s button button-rounded position--abs-BR" value="%4$s" />')); ?>
 
 </div>
